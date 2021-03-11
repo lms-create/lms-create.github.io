@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.2k 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      15
+      17
        分钟
     </span>
   
@@ -248,7 +248,7 @@
 &#125;</code></pre></div>
 
 <p>在app函数中我们定义出<code>next</code>函数，随即立马调用一次，因为当前的应用中，事件的触发是通过<code>next</code>函数来往下走的，所以我们要立即调用一次<code>next()</code>，这样就可以将流程进行下去了。</p>
-<p>然后我们判断method是否等于middle，如果相等说明是中间件，执行相关handler，如果不是就判断是否有get、post等操作。</p>
+<p>然后我们判断<code>method</code>是否等于<code>middle</code>，如果相等说明是中间件，执行相关<code>handler</code>，如果不是就判断是否有<code>get、post</code>等操作。</p>
 <div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">let</span> &#123;method,path,handler&#125; = app.routes[index++];
     <span class="hljs-keyword">if</span>(method === <span class="hljs-string">&#x27;middle&#x27;</span>)&#123;
       <span class="hljs-comment">//TODO</span>
@@ -263,7 +263,7 @@
 <p>当所有都判断完都没有找到相应的事件则：</p>
 <div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">if</span>(index === app.routes.length) <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>);</code></pre></div>
 
-<p>接下来我们来实现当method===’middle’时，做出的操作：</p>
+<p>接下来我们来实现当<code>method===&#39;middle&#39;</code>时，做出的操作：</p>
 <div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">if</span>(method === <span class="hljs-string">&#x27;middle&#x27;</span>)&#123;
 	<span class="hljs-keyword">if</span> (path === <span class="hljs-string">&#x27;/&#x27;</span> || path === pathname || 					pathname.startsWith(path+<span class="hljs-string">&#x27;/&#x27;</span>))&#123;
 	handler(req,res,next);
@@ -273,7 +273,19 @@
 	&#125;
 &#125;</code></pre></div>
 
-<p>加入中间件后，具体完整框架实现代码如下：</p>
+<p>接下来我们来引入错误中间件的概念。</p>
+<h4 id="错误中间件"><a href="#错误中间件" class="headerlink" title="错误中间件"></a>错误中间件</h4><p>错误中间件就是当对<code>next</code>传入错误信息时，跳过所有事件，直接跳到错误中间件的函数执行中。错误中间件有4个参数，并且错误中间件可以连续调用，我们现在一步一步来实现。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">if</span>(err)&#123;
+  <span class="hljs-keyword">if</span>(handler.length === <span class="hljs-number">4</span>)&#123;
+    handler(err,req,res,handler);
+  &#125;
+  <span class="hljs-keyword">else</span>&#123;
+    next(err);
+  &#125;
+&#125;</code></pre></div>
+
+<p>因为错误中间件有4个参数，所以当我们的next中传入错误参数时，就非常好判断了，我们只要判断handler中是否有4个参数就行。</p>
+<p>加入中间件和错误中间件后，具体完整框架实现代码如下：</p>
 <div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
 <span class="hljs-keyword">let</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>);
  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;
@@ -281,10 +293,19 @@
      <span class="hljs-keyword">let</span> m = req.method.toLowerCase();
      <span class="hljs-keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="hljs-literal">true</span>);
      <span class="hljs-keyword">let</span> index = <span class="hljs-number">0</span>;
-     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">next</span>(<span class="hljs-params"></span>)</span>&#123;
+     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">next</span>(<span class="hljs-params">err</span>)</span>&#123;
        <span class="hljs-keyword">if</span>(index === app.routes.length) <span class="hljs-keyword">return</span> res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>);
        <span class="hljs-keyword">let</span> &#123;method ,path ,handler&#125; = app.routes[index++];
-       <span class="hljs-keyword">if</span>(method === <span class="hljs-string">&#x27;middle&#x27;</span>)
+       <span class="hljs-keyword">if</span>(err)&#123;
+         <span class="hljs-keyword">if</span>(handler.length === <span class="hljs-number">4</span>)&#123;
+           handler(err,req,res,handler);
+         &#125;
+         <span class="hljs-keyword">else</span>&#123;
+           next(err);
+         &#125;
+       &#125;
+       <span class="hljs-keyword">else</span>&#123;
+         <span class="hljs-keyword">if</span>(method === <span class="hljs-string">&#x27;middle&#x27;</span>)
        &#123;
          <span class="hljs-keyword">if</span> (path === <span class="hljs-string">&#x27;/&#x27;</span> || path === pathname || pathname.startsWith(path+<span class="hljs-string">&#x27;/&#x27;</span>))&#123;
            handler(req,res,next);
@@ -305,6 +326,8 @@
        &#125;
      &#125;;
      next();
+       &#125;
+       
     <span class="hljs-comment">//  for(let i = 0;i&lt;app.routes.length;i++)&#123;</span>
     <span class="hljs-comment">//    let&#123;method,path,handler&#125; = app.routes[i];</span>
     <span class="hljs-comment">//    if((method === m||method === &#x27;all&#x27;) &amp;&amp; (path === pathname||path === &#x27;*&#x27;))</span>
@@ -355,8 +378,7 @@ http.METHODS.forEach(<span class="hljs-function"><span class="hljs-params">metho
 
  <span class="hljs-built_in">module</span>.exports = createApplication;</code></pre></div>
 
-<p>接下来我们来引入错误中间件的概念。</p>
-<h4 id="错误中间件"><a href="#错误中间件" class="headerlink" title="错误中间件"></a>错误中间件</h4><p>错误中间件就是当对next传入错误信息时，跳过所有事件，到错误中间件的函数执行中。我们一步一步来实现。</p>
+<p>实际上，express中很多功能的实现都是内置中间件去实现的，我们后面在慢慢讲解。</p>
 
             </div>
             <hr>
