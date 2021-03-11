@@ -204,51 +204,199 @@
               <p>Express 是一个保持最小规模的灵活的 Node.js Web 应用程序开发框架，为 Web 和移动应用程序提供一组强大的功能。</p>
 <p>我们从零开始构建一个express框架。</p>
 <p>首先，我们正常使用express来发起网络请求是这样的：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//使用案例</span><br><span class="hljs-keyword">let</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-keyword">let</span> app = express();<br>app.get(<span class="hljs-string">&#x27;/age&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)</span>&#123;<br>  res.end(<span class="hljs-string">&#x27;lms&#x27;</span>);<br>&#125;)<br>app.get(<span class="hljs-string">&#x27;/name&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)</span>&#123;<br>  res.end(<span class="hljs-string">&#x27;this is name&#x27;</span>);<br>&#125;)<br>app.listen(<span class="hljs-number">3000</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;server start 3000&#x27;</span>);<br>&#125;)<br><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//使用案例</span>
+<span class="hljs-keyword">let</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
+<span class="hljs-keyword">let</span> app = express();
+app.get(<span class="hljs-string">&#x27;/age&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)</span>&#123;
+  res.end(<span class="hljs-string">&#x27;lms&#x27;</span>);
+&#125;)
+app.get(<span class="hljs-string">&#x27;/name&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">req,res</span>)</span>&#123;
+  res.end(<span class="hljs-string">&#x27;this is name&#x27;</span>);
+&#125;)
+app.listen(<span class="hljs-number">3000</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;server start 3000&#x27;</span>);
+&#125;)
+</code></pre></div>
 
 <p>这是正常的express的使用。可以看出：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//使用</span><br><span class="hljs-keyword">let</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-keyword">let</span> app = express();<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//使用</span>
+<span class="hljs-keyword">let</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);
+<span class="hljs-keyword">let</span> app = express();</code></pre></div>
 
 <p>从express中返回的是一个函数，所以我们可以这么开始：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//框架</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;<br><br>  &#125;<br>  <span class="hljs-keyword">return</span> app;<br>&#125;<br><br><span class="hljs-built_in">module</span>.exports = createApplication;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//框架</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;
+
+  &#125;
+  <span class="hljs-keyword">return</span> app;
+&#125;
+
+<span class="hljs-built_in">module</span>.exports = createApplication;</code></pre></div>
 
 <p>然后一个网络请求肯定是有监听函数的</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//使用</span><br>app.listen(<span class="hljs-number">3000</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;server start 3000&#x27;</span>);<br>&#125;)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//使用</span>
+app.listen(<span class="hljs-number">3000</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;server start 3000&#x27;</span>);
+&#125;)</code></pre></div>
 
 <p>在框架中我们就可以这么写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//框架</span><br><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;<br>  &#125;<br>  app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> server = http.createServer(app);<br>    server.listen(...arguments);<br>  &#125;<br>  <span class="hljs-keyword">return</span> app;<br>&#125;<br><span class="hljs-built_in">module</span>.exports = createApplication;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//框架</span>
+<span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;
+  &#125;
+  app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">let</span> server = http.createServer(app);
+    server.listen(...arguments);
+  &#125;
+  <span class="hljs-keyword">return</span> app;
+&#125;
+<span class="hljs-built_in">module</span>.exports = createApplication;</code></pre></div>
 
 <p>我们看一下这段代码</p>
 <p>对于监听函数</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);</code></pre></div>
 
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js">app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> server = http.createServer(app);<br>  server.listen(...arguments);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js">app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">let</span> server = http.createServer(app);
+  server.listen(...arguments);
+&#125;</code></pre></div>
 
 <p>我们虽然是手撸express框架，但是框架还是用node写的，里面的一些实现还是根据node的核心模块来完成的，只是express框架将他们整合起来，使用户们用起来更加方便。</p>
 <p>肯定有人对这段代码有疑问，为什么这么写呢？</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">server.listen(...arguments);<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js">server.listen(...arguments);</code></pre></div>
 
 <p>因为在监听的过程中不确定会有几个传参，所以直接将app.listen()中的参数全部拿下来。</p>
 <p>在使用中我们会用到的get，我们现在来实现它。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//框架</span><br><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br><span class="hljs-keyword">let</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;<br>    <span class="hljs-keyword">let</span> m = req.method.toLowerCase();<br>    <span class="hljs-keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="hljs-literal">true</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;app.routes.length;i++)<br>    &#123;<br>      <span class="hljs-keyword">let</span> &#123;method,path,handler&#125; = app.routes[i];<br>      <span class="hljs-keyword">if</span>(method === m &amp;&amp; path === pathname)<br>      &#123;<br>        <span class="hljs-keyword">return</span> handler(req,res);<br>      &#125;<br>    &#125;<br>    res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>)<br>  &#125;<br>  app.routes = [];<br>  app.get = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> layer = &#123;<br>      method:<span class="hljs-string">&#x27;get&#x27;</span>,<br>      path,<br>      handler<br>    &#125;<br>    app.routes.push(layer);<br>  &#125;<br>  app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> server = http.createServer(app);<br>    server.listen(...arguments);<br>  &#125;<br>  <span class="hljs-keyword">return</span> app;<br>&#125;<br><br><span class="hljs-built_in">module</span>.exports = createApplication;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//框架</span>
+<span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
+<span class="hljs-keyword">let</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;
+    <span class="hljs-keyword">let</span> m = req.method.toLowerCase();
+    <span class="hljs-keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;app.routes.length;i++)
+    &#123;
+      <span class="hljs-keyword">let</span> &#123;method,path,handler&#125; = app.routes[i];
+      <span class="hljs-keyword">if</span>(method === m &amp;&amp; path === pathname)
+      &#123;
+        <span class="hljs-keyword">return</span> handler(req,res);
+      &#125;
+    &#125;
+    res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>)
+  &#125;
+  app.routes = [];
+  app.get = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> layer = &#123;
+      method:<span class="hljs-string">&#x27;get&#x27;</span>,
+      path,
+      handler
+    &#125;
+    app.routes.push(layer);
+  &#125;
+  app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">let</span> server = http.createServer(app);
+    server.listen(...arguments);
+  &#125;
+  <span class="hljs-keyword">return</span> app;
+&#125;
+
+<span class="hljs-built_in">module</span>.exports = createApplication;</code></pre></div>
 
 <p>解构：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">app.get = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> layer = &#123;<br>      method:<span class="hljs-string">&#x27;get&#x27;</span>,<br>      path,<br>      handler<br>    &#125;<br>    app.routes.push(layer);<br>  &#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js">app.get = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> layer = &#123;
+      method:<span class="hljs-string">&#x27;get&#x27;</span>,
+      path,
+      handler
+    &#125;
+    app.routes.push(layer);
+  &#125;</code></pre></div>
 
 <p>在这段代码中，path是传过来的路径，handler是传过来的函数。</p>
 <p>在一段网络请求中肯定会有多组get请求，所以我们需要一个对象数组，将<code>&#123;method,path,handler&#125;</code>传入，方便请求。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> m = req.method.toLowerCase();<br><span class="hljs-keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="hljs-literal">true</span>);<br> <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;app.routes.length;i++)<br> &#123;<br>   <span class="hljs-keyword">let</span> &#123;method,path,handler&#125; = app.routes[i];<br>   <span class="hljs-keyword">if</span>(method === m &amp;&amp; path === pathname)<br>   &#123;<br>     <span class="hljs-keyword">return</span> handler(req,res);<br>   &#125;<br> &#125;<br> res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">let</span> m = req.method.toLowerCase();
+<span class="hljs-keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="hljs-literal">true</span>);
+ <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;app.routes.length;i++)
+ &#123;
+   <span class="hljs-keyword">let</span> &#123;method,path,handler&#125; = app.routes[i];
+   <span class="hljs-keyword">if</span>(method === m &amp;&amp; path === pathname)
+   &#123;
+     <span class="hljs-keyword">return</span> handler(req,res);
+   &#125;
+ &#125;
+ res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>)</code></pre></div>
 
 <p>我们将get都放到<code> app.routes[]</code> 中，循环这个数组，然后判断从网页中得到的method和path 和 数组中的有没有一致的，如果一直就执行相对应的handler函数，否则就执行<code>res.end(`Cannot $&#123;m&#125; $&#123;pathname&#125;`)</code>。</p>
 <p>我们知道在网络请求中不只有get请求，还有post等等。我们也当然可以每一种都执行一次类似get的操作，代码太繁琐。</p>
 <p>在http核心模块中我们是可以拿到所有的方法的，所以我们可以这么写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">http.METHODS.forEach(<span class="hljs-function"><span class="hljs-params">method</span> =&gt;</span>&#123;<br>    app[method] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> layer = &#123;<br>      method,<br>      path,<br>      handler<br>    &#125;<br>    app.routes.push(layer);<br>  &#125;<br>  &#125;)<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js">http.METHODS.forEach(<span class="hljs-function"><span class="hljs-params">method</span> =&gt;</span>&#123;
+    app[method] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> layer = &#123;
+      method,
+      path,
+      handler
+    &#125;
+    app.routes.push(layer);
+  &#125;
+  &#125;)</code></pre></div>
 
 <p>在请求中我们还有一种请求<code>app.all</code>，和上面的请求一样：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">app.all = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> layer = &#123;<br>    method: <span class="hljs-string">&#x27;all&#x27;</span>,<br>    path,<br>    handler<br>  &#125;<br>  app.routes.push(layer);<br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js">app.all = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> layer = &#123;
+    method: <span class="hljs-string">&#x27;all&#x27;</span>,
+    path,
+    handler
+  &#125;
+  app.routes.push(layer);
+&#125;</code></pre></div>
 
 <p>于是我们可以得到第一版的express框架源码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//框架</span><br><span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);<br><span class="hljs-keyword">let</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;<br>  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;<br>    <span class="hljs-keyword">let</span> m = req.method.toLowerCase();<br>    <span class="hljs-keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="hljs-literal">true</span>);<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;app.routes.length;i++)&#123;<br>      <span class="hljs-keyword">let</span>&#123;method,path,handler&#125; = app.routes[i];<br>      <span class="hljs-keyword">if</span>((method === m||method === <span class="hljs-string">&#x27;all&#x27;</span>) &amp;&amp; (path === pathname||path === <span class="hljs-string">&#x27;*&#x27;</span>))<br>      &#123;<br>        <span class="hljs-keyword">return</span> handler(req,res);<br>      &#125;<br>    &#125;<br>    res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>)<br>  &#125;<br>  app.routes = [];<br>  http.METHODS.forEach(<span class="hljs-function"><span class="hljs-params">method</span> =&gt;</span>&#123;<br>    app[method] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> layer = &#123;<br>      method,<br>      path,<br>      handler<br>    &#125;<br>    app.routes.push(layer);<br>  &#125;<br>  &#125;)<br>  app.all = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> layer = &#123;<br>      method: <span class="hljs-string">&#x27;all&#x27;</span>,<br>      path,<br>      handler<br>    &#125;<br>    app.routes.push(layer);<br>  &#125;<br>  app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">let</span> server = http.createServer(app);<br>    server.listen(...arguments);<br>  &#125;<br>  <span class="hljs-keyword">return</span> app;<br>&#125;<br><br><span class="hljs-built_in">module</span>.exports = createApplication;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//框架</span>
+<span class="hljs-keyword">let</span> http = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http&#x27;</span>);
+<span class="hljs-keyword">let</span> url = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;url&#x27;</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createApplication</span>(<span class="hljs-params"></span>)</span>&#123;
+  <span class="hljs-keyword">let</span> app = <span class="hljs-function">(<span class="hljs-params">req,res</span>) =&gt;</span>&#123;
+    <span class="hljs-keyword">let</span> m = req.method.toLowerCase();
+    <span class="hljs-keyword">let</span> &#123;pathname&#125; = url.parse(req.url,<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>;i&lt;app.routes.length;i++)&#123;
+      <span class="hljs-keyword">let</span>&#123;method,path,handler&#125; = app.routes[i];
+      <span class="hljs-keyword">if</span>((method === m||method === <span class="hljs-string">&#x27;all&#x27;</span>) &amp;&amp; (path === pathname||path === <span class="hljs-string">&#x27;*&#x27;</span>))
+      &#123;
+        <span class="hljs-keyword">return</span> handler(req,res);
+      &#125;
+    &#125;
+    res.end(<span class="hljs-string">`Cannot <span class="hljs-subst">$&#123;m&#125;</span> <span class="hljs-subst">$&#123;pathname&#125;</span>`</span>)
+  &#125;
+  app.routes = [];
+  http.METHODS.forEach(<span class="hljs-function"><span class="hljs-params">method</span> =&gt;</span>&#123;
+    app[method] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> layer = &#123;
+      method,
+      path,
+      handler
+    &#125;
+    app.routes.push(layer);
+  &#125;
+  &#125;)
+  app.all = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">path,handler</span>)</span>&#123;
+    <span class="hljs-keyword">let</span> layer = &#123;
+      method: <span class="hljs-string">&#x27;all&#x27;</span>,
+      path,
+      handler
+    &#125;
+    app.routes.push(layer);
+  &#125;
+  app.listen = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;
+    <span class="hljs-keyword">let</span> server = http.createServer(app);
+    server.listen(...arguments);
+  &#125;
+  <span class="hljs-keyword">return</span> app;
+&#125;
+
+<span class="hljs-built_in">module</span>.exports = createApplication;</code></pre></div>
 
 <p>在这里我们可以实现最简单的get、post、all等等操作。当然还有很多功能，后面我会一点点补全代码。下一次我们给这段代码中添加中间件的概念。</p>
 
