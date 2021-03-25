@@ -20,7 +20,7 @@
   <meta name="author" content="李名顺">
   <meta name="keywords" content="">
   
-  <title>前端知识体系（CSS）（一） - zust-lms</title>
+  <title>前端知识体系（CSS） - zust-lms</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -136,7 +136,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="前端知识体系（CSS）（一）">
+            <span class="h2" id="subtitle" title="前端知识体系（CSS）">
               
             </span>
 
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      434 字
+      901 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      11
        分钟
     </span>
   
@@ -198,7 +198,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前端知识体系（CSS）（一）</h1>
+            <h1 style="display: none">前端知识体系（CSS）</h1>
             
             <div class="markdown-body">
               <h4 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h4><h5 id="w3c标准盒模型（content-box）"><a href="#w3c标准盒模型（content-box）" class="headerlink" title="w3c标准盒模型（content-box）"></a>w3c标准盒模型（content-box）</h5><p>content只包括content，没有其余内容。</p>
@@ -231,8 +231,79 @@
 <p>3.absolute+margin</p>
 <p>4.margin auto</p>
 <p>5.display: table-cell</p>
-<p>6.cacl()</p>
+<p>6.calc()</p>
+<h4 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h4><p>1.中间固定两边自适应</p>
+<div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span>
+			*&#123;
+<span class="css">				<span class="hljs-attribute">margin</span>:<span class="hljs-number">0</span>;</span>
+<span class="css">				<span class="hljs-attribute">padding</span>:<span class="hljs-number">0</span>;</span>
+			&#125;
+			.wrap&#123;
+<span class="css">				<span class="hljs-attribute">display</span>:flex;</span>
+<span class="css">				<span class="hljs-attribute">flex-direction</span>:row;</span>
+<span class="css">				<span class="hljs-attribute">margin-top</span>:<span class="hljs-number">20px</span>;</span>
+			&#125;
+			.center&#123;
+<span class="css">				<span class="hljs-attribute">width</span>:<span class="hljs-number">800px</span>;</span>
+<span class="css">				<span class="hljs-attribute">text-align</span>:center;</span>
+<span class="css">				<span class="hljs-attribute">background</span>:<span class="hljs-number">#ccc</span>;</span>
+			&#125;
+			.left,.right&#123;
+<span class="css">	        <span class="hljs-attribute">flex-grow</span>: <span class="hljs-number">1</span>;</span>
+<span class="css">	        <span class="hljs-attribute">line-height</span>: <span class="hljs-number">30px</span>;</span>
+<span class="css">	        <span class="hljs-attribute">background</span>:red;</span>
+	     &#125;
+		<span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;wrap&quot;</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;left&quot;</span>&gt;</span>left<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;center&quot;</span>&gt;</span>center<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;right&quot;</span>&gt;</span>right<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div>
 
+<p>2.两端固定中间自适应</p>
+<p>浮动布局</p>
+<p>利用float实现</p>
+<p>flex布局</p>
+<p>利用flex-grow实现</p>
+<p>绝对定位布局</p>
+<p>利用position实现（中间内容优先）</p>
+<h4 id="层叠上下文"><a href="#层叠上下文" class="headerlink" title="层叠上下文"></a>层叠上下文</h4><h4 id="移动端布局"><a href="#移动端布局" class="headerlink" title="移动端布局"></a>移动端布局</h4><p>rem布局</p>
+<p>rem取决于html头的字体大小。</p>
+<p>流体布局（flex）</p>
+<p>媒体查询 根据不同的设备的界面大小去实现不同的css</p>
+<h4 id="a标签样式的LoVe-HAte原则"><a href="#a标签样式的LoVe-HAte原则" class="headerlink" title="a标签样式的LoVe/HAte原则"></a>a标签样式的LoVe/HAte原则</h4><p>1 a:link，定义正常链接的样式；<br>2 a:visited，定义已访问过链接的样式；<br>3 a:hover，定义鼠标悬浮在链接上时的样式；<br>4 a:active，定义鼠标点击链接时的样式。<br>定义样式一定要按照这个顺序定义。</p>
+<h4 id="鼠标点击事件触发顺序"><a href="#鼠标点击事件触发顺序" class="headerlink" title="鼠标点击事件触发顺序"></a>鼠标点击事件触发顺序</h4><p>onmouseenter–onmousedown–onfocus–onmouseup–onclick</p>
+<h4 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h4><div class="code-wrapper"><pre><code class="hljs css"><span class="hljs-comment">/* 动画代码 */</span>
+<span class="hljs-keyword">@keyframes</span> example &#123;
+  <span class="hljs-selector-tag">from</span> &#123;<span class="hljs-attribute">background-color</span>: red;&#125;
+  <span class="hljs-selector-tag">to</span> &#123;<span class="hljs-attribute">background-color</span>: yellow;&#125;
+&#125;
+
+<span class="hljs-comment">/* 向此元素应用动画效果 */</span>
+<span class="hljs-selector-tag">div</span> &#123;
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;
+  <span class="hljs-attribute">background-color</span>: red;
+  <span class="hljs-attribute">animation-name</span>: example;
+  <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">4s</span>;
+&#125;</code></pre></div>
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="元素隐藏"><a href="#元素隐藏" class="headerlink" title="元素隐藏"></a>元素隐藏</h4><p>display：none</p>
+<p>opacity：0</p>
+<p>z-index=-1</p>
+<p>Visibility:hidden</p>
+<h4 id="calc函数-可以在函数中运算数值"><a href="#calc函数-可以在函数中运算数值" class="headerlink" title="calc函数 可以在函数中运算数值"></a>calc函数 可以在函数中运算数值</h4><h4 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h4><p>可以修饰不属于dom树的部分</p>
+<h4 id="选择器及其优先级"><a href="#选择器及其优先级" class="headerlink" title="选择器及其优先级"></a>选择器及其优先级</h4><p>!important &gt; 内联 &gt; ID选择器 &gt; 类选择器 &gt; 标签选择器 &gt; 通配符选择器</p>
+<h4 id="CSS预处理器"><a href="#CSS预处理器" class="headerlink" title="CSS预处理器"></a>CSS预处理器</h4>
             </div>
             <hr>
             <div>
