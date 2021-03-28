@@ -203,7 +203,7 @@
             <div class="markdown-body">
               <p>我们在这次的讲解中，要加入中间件和错误中间件的概念。</p>
 <p>首先我们先要理解什么是中间件、错误中间件。</p>
-<h4 id="中间件："><a href="#中间件：" class="headerlink" title="中间件："></a>中间件：</h4><p>Express 是一个自身功能极简，完全是由路由和中间件构成一个的 web 开发框架：从本质上来说，一个 Express 应用就是在调用各种中间件。</p>
+<h2 id="中间件："><a href="#中间件：" class="headerlink" title="中间件："></a>中间件：</h2><p>Express 是一个自身功能极简，完全是由路由和中间件构成一个的 web 开发框架：从本质上来说，一个 Express 应用就是在调用各种中间件。</p>
 <p>说人话就是中间件就是一个函数，只有在一个流程中调用中间件，才能继续往下走</p>
 <p>如果当前中间件没有终结请求-响应循环，则必须调用 <code>next()</code> 方法将控制权交给下一个中间件，否则请求就会挂起。</p>
 <p>我们来实现一下：</p>
@@ -274,7 +274,7 @@
 &#125;</code></pre></div>
 
 <p>接下来我们来引入错误中间件的概念。</p>
-<h4 id="错误中间件"><a href="#错误中间件" class="headerlink" title="错误中间件"></a>错误中间件</h4><p>错误中间件就是当对<code>next</code>传入错误信息时，跳过所有事件，直接跳到错误中间件的函数执行中。错误中间件有4个参数，并且错误中间件可以连续调用，我们现在一步一步来实现。</p>
+<h2 id="错误中间件"><a href="#错误中间件" class="headerlink" title="错误中间件"></a>错误中间件</h2><p>错误中间件就是当对<code>next</code>传入错误信息时，跳过所有事件，直接跳到错误中间件的函数执行中。错误中间件有4个参数，并且错误中间件可以连续调用，我们现在一步一步来实现。</p>
 <div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">if</span>(err)&#123;
   <span class="hljs-keyword">if</span>(handler.length === <span class="hljs-number">4</span>)&#123;
     handler(err,req,res,handler);

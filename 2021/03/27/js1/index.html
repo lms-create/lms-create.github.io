@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/null">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="保持热爱，奔赴山海">
+  
+  <meta name="author" content="李名顺">
+  <meta name="keywords" content="">
+  
+  <title>前端知识体系_js（二） - zust-lms</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>李名顺的秘密基地</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/88369330_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端知识体系_js（二）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-03-27 17:45" pubdate>
+        2021年3月27日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      22
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端知识体系_js（二）</h1>
+            
+            <div class="markdown-body">
+              <h2 id="数组扁平化"><a href="#数组扁平化" class="headerlink" title="数组扁平化"></a>数组扁平化</h2><div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> animals = [<span class="hljs-string">&quot;🐷&quot;</span>, [<span class="hljs-string">&quot;🐶&quot;</span>, <span class="hljs-string">&quot;🐂&quot;</span>], [<span class="hljs-string">&quot;🐎&quot;</span>, [<span class="hljs-string">&quot;🐑&quot;</span>, [<span class="hljs-string">&quot;🐲&quot;</span>]], <span class="hljs-string">&quot;🐛&quot;</span>]];
+
+<span class="hljs-comment">// 不传参数时，默认“拉平”一层</span>
+animals.flat();
+<span class="hljs-comment">// [&quot;🐷&quot;, &quot;🐶&quot;, &quot;🐂&quot;, &quot;🐎&quot;, [&quot;🐑&quot;, [&quot;🐲&quot;]], &quot;🐛&quot;]</span>
+
+<span class="hljs-comment">// 传入一个整数参数，整数即“拉平”的层数</span>
+animals.flat(<span class="hljs-number">2</span>);
+<span class="hljs-comment">// [&quot;🐷&quot;, &quot;🐶&quot;, &quot;🐂&quot;, &quot;🐎&quot;, &quot;🐑&quot;, [&quot;🐲&quot;], &quot;🐛&quot;]</span>
+
+<span class="hljs-comment">// Infinity 关键字作为参数时，无论多少层嵌套，都会转为一维数组</span>
+animals.flat(<span class="hljs-literal">Infinity</span>);
+<span class="hljs-comment">// [&quot;🐷&quot;, &quot;🐶&quot;, &quot;🐂&quot;, &quot;🐎&quot;, &quot;🐑&quot;, &quot;🐲&quot;, &quot;🐛&quot;]</span>
+
+<span class="hljs-comment">// 传入 &lt;=0 的整数将返回原数组，不“拉平”</span>
+animals.flat(<span class="hljs-number">0</span>);
+animals.flat(-<span class="hljs-number">10</span>);
+<span class="hljs-comment">// [&quot;🐷&quot;, [&quot;🐶&quot;, &quot;🐂&quot;], [&quot;🐎&quot;, [&quot;🐑&quot;, [&quot;🐲&quot;]], &quot;🐛&quot;]];</span>
+
+<span class="hljs-comment">// 如果原数组有空位，flat()方法会跳过空位。</span>
+[<span class="hljs-string">&quot;🐷&quot;</span>, <span class="hljs-string">&quot;🐶&quot;</span>, <span class="hljs-string">&quot;🐂&quot;</span>, <span class="hljs-string">&quot;🐎&quot;</span>,,].flat();
+<span class="hljs-comment">// [&quot;🐷&quot;, &quot;🐶&quot;, &quot;🐂&quot;, &quot;🐎&quot;]</span>
+</code></pre></div>
+
+<h4 id="手动实现flat-函数"><a href="#手动实现flat-函数" class="headerlink" title="手动实现flat()函数"></a>手动实现flat()函数</h4><p>思路：首先需要遍历数组中的元素，然后再判断元素是否为数组，再将数组展开。</p>
+<p>Concat()就是将数组合并。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]]], <span class="hljs-number">5</span>];
+<span class="hljs-comment">// concat + 递归</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">flat</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> arrResult = [];
+  arr.forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> &#123;
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(item)) &#123;
+      arrResult = arrResult.concat(<span class="hljs-built_in">arguments</span>.callee(item));   <span class="hljs-comment">// 递归</span>
+      <span class="hljs-comment">// 或者用扩展运算符</span>
+      <span class="hljs-comment">// arrResult.push(...arguments.callee(item));</span>
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      arrResult.push(item);
+    &#125;
+  &#125;);
+  <span class="hljs-keyword">return</span> arrResult;
+&#125;
+<span class="hljs-keyword">let</span> lms = flat(arr);
+<span class="hljs-built_in">console</span>.log(lms);
+<span class="hljs-comment">// [1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 5];</span>
+</code></pre></div>
+
+<h4 id="reduce-实现flat"><a href="#reduce-实现flat" class="headerlink" title="reduce()实现flat()"></a>reduce()实现flat()</h4><p>reduce的作用是将数组中的元素执行自己定义的回调函数。</p>
+<p>例如：</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">var</span> total = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>].reduce(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>&#123;
+  <span class="hljs-keyword">return</span> a + b;
+&#125;)
+<span class="hljs-comment">//total = 10</span>
+
+<span class="hljs-keyword">var</span> total = [[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>],[<span class="hljs-number">5</span>,<span class="hljs-number">6</span>]].reduce(<span class="hljs-function">(<span class="hljs-params">a,b</span>)=&gt;</span>&#123;
+  <span class="hljs-keyword">return</span> a.concat(b);
+&#125;)
+<span class="hljs-comment">//total[1,2,3,4,5,6];</span></code></pre></div>
+
+<p>所以我们可以写出以下代码：</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">const</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]]], <span class="hljs-number">5</span>]
+
+<span class="hljs-comment">// 首先使用 reduce 展开一层</span>
+arr.reduce(<span class="hljs-function">(<span class="hljs-params">pre, cur</span>) =&gt;</span> pre.concat(cur), []);
+<span class="hljs-comment">// [1, 2, 3, 4, 1, 2, 3, [1, 2, 3, [1, 2, 3]], 5];</span>
+
+<span class="hljs-comment">// 用 reduce 展开一层 + 递归</span>
+<span class="hljs-keyword">const</span> flat = <span class="hljs-function"><span class="hljs-params">arr</span> =&gt;</span> &#123;
+  <span class="hljs-keyword">return</span> arr.reduce(<span class="hljs-function">(<span class="hljs-params">pre, cur</span>) =&gt;</span> &#123;
+    <span class="hljs-keyword">return</span> pre.concat(<span class="hljs-built_in">Array</span>.isArray(cur) ? flat(cur) : cur);
+  &#125;, []);
+&#125;;
+<span class="hljs-comment">// [1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 1, 2, 3, 5];</span>
+</code></pre></div>
+
+<h2 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h2><div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>];
+<span class="hljs-comment">//通过ES6 Set函数的属性</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uniqe</span>(<span class="hljs-params">arr</span>)</span>&#123;
+  <span class="hljs-keyword">return</span> [...new <span class="hljs-built_in">Set</span>(arr)];
+&#125;
+<span class="hljs-comment">//用indexOf查找筛选</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uniqe1</span>(<span class="hljs-params">arr</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> newArr = [];
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i <span class="hljs-keyword">in</span> arr)&#123;
+    <span class="hljs-keyword">if</span>(newArr.indexOf(arr[i])==-<span class="hljs-number">1</span>)
+    &#123;
+      newArr.push(arr[i]);
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> newArr;
+&#125;
+<span class="hljs-comment">// 双指针，通过splice删除元素</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uniqe2</span>(<span class="hljs-params">arr</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> len = arr.length;
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">0</span>;i&lt;len;i++)
+  &#123;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> j=i+<span class="hljs-number">1</span>;j&lt;len;j++)
+    &#123;
+      <span class="hljs-keyword">if</span>(arr[i]===arr[j])
+      &#123;
+        arr.splice(j,<span class="hljs-number">1</span>);
+        j--;
+        len--;
+      &#125;
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> arr;
+&#125;
+<span class="hljs-comment">// 先排序，用栈实现</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">uniqe3</span>(<span class="hljs-params">arr</span>)</span>&#123;
+  <span class="hljs-keyword">let</span> stack =[];
+  arr.sort();
+  <span class="hljs-keyword">let</span> end = arr[<span class="hljs-number">0</span>];
+  stack.push(arr[<span class="hljs-number">0</span>]);
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>;i&lt;arr.length;i++)
+  &#123;
+    <span class="hljs-keyword">if</span>(arr[i]!=end)
+    &#123;
+      stack.push(arr[i]);
+      end = arr[i];
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> stack;
+&#125;
+<span class="hljs-comment">//通过filter函数 a是数组里的元素，b是数组里每个元素第一次出现的index，c代表数组名。</span>
+<span class="hljs-keyword">let</span> lms2 = arr.filter(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b,c</span>)</span>&#123;
+  <span class="hljs-keyword">return</span> c.indexOf(a) === b;
+&#125;)
+<span class="hljs-keyword">let</span> lms = uniqe3(arr);
+<span class="hljs-built_in">console</span>.log(lms);
+<span class="hljs-built_in">console</span>.log(lms2);</code></pre></div>
+
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h4 id="事件流"><a href="#事件流" class="headerlink" title="事件流"></a>事件流</h4><p>事件捕获阶段 从上到下子级元素触发</p>
+<p>处于目标阶段</p>
+<p>事件冒泡阶段 从下到上父级元素触发</p>
+<h4 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h4><p>element.addEventListener(event, function,useCapture) 事件，函数，捕获true/冒泡false</p>
+<h4 id="事件机制-EventLoop（轮询）"><a href="#事件机制-EventLoop（轮询）" class="headerlink" title="事件机制/EventLoop（轮询）"></a>事件机制/EventLoop（轮询）</h4><p>javascirpt是单线程的，如果事件过多，过大就会导致阻塞。</p>
+<p>所以提出了事件轮询机制，有主线程和事件副线程。主线程发送事件执行命令到副线程执行，执行完成向主线程返回结果。这样主线程就不会阻塞了。</p>
+<h4 id="原生的自定义事件"><a href="#原生的自定义事件" class="headerlink" title="原生的自定义事件"></a>原生的自定义事件</h4><h5 id="CreateEvent-eventType-；"><a href="#CreateEvent-eventType-；" class="headerlink" title="CreateEvent(eventType)；"></a>CreateEvent(eventType)；</h5><p>作用：用于创建事件<br>eventType: HTMLEvents || MouseEvents || UIEvents (想获取的 Event 对象的事件模块名。)<br>返回值： 新创建的 Event 对象，具有指定的类型。</p>
+<h5 id="event-initEvent-eventType-canBubble-cancelable"><a href="#event-initEvent-eventType-canBubble-cancelable" class="headerlink" title="event.initEvent(eventType,canBubble,cancelable)"></a>event.initEvent(eventType,canBubble,cancelable)</h5><p>作用：用于初始化事件<br>eventType： 字符串值。事件的类型。<br>canBubble： 事件是否起泡<br>cancelable： 是否可以用 preventDefault() 方法取消事件</p>
+<h5 id="dispatchEvent-eventType"><a href="#dispatchEvent-eventType" class="headerlink" title="dispatchEvent(eventType)"></a>dispatchEvent(eventType)</h5><p>作用：用于触发自定义事件<br>eventType： 要分派的 Event 对象。</p>
+<div class="code-wrapper"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>自定义事件<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">&quot;handle()&quot;</span>&gt;</span>触发自定义事件<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
+<span class="javascript">        <span class="hljs-comment">// 先创建自定义事件</span></span>
+<span class="javascript">        <span class="hljs-keyword">var</span> myEvent = <span class="hljs-built_in">document</span>.createEvent(<span class="hljs-string">&#x27;HTMLEvents&#x27;</span>);</span>
+<span class="javascript">        <span class="hljs-comment">// 自定义事件回调函数的参数</span></span>
+        myEvent.data = &#123;
+<span class="javascript">            msg: <span class="hljs-string">&#x27;GoodNight&#x27;</span></span>
+        &#125;
+<span class="javascript">        <span class="hljs-comment">// 初始化事件</span></span>
+<span class="javascript">        myEvent.initEvent(<span class="hljs-string">&#x27;GoodNight&#x27;</span>,<span class="hljs-literal">true</span>,<span class="hljs-literal">true</span>);</span>
+<span class="javascript">        <span class="hljs-comment">// 监听自定义事件</span></span>
+<span class="javascript">        <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&#x27;GoodNight&#x27;</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>&#123;</span>
+<span class="javascript">            <span class="hljs-built_in">console</span>.log(e)</span>
+<span class="javascript">            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`我被触发了，<span class="hljs-subst">$&#123;e.data.msg&#125;</span>`</span>);</span>
+<span class="javascript">        &#125;,<span class="hljs-literal">true</span>);</span>
+<span class="javascript">        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">handle</span> (<span class="hljs-params"></span>) </span>&#123;</span>
+<span class="javascript">            <span class="hljs-comment">// 触发自定义事件</span></span>
+<span class="javascript">            <span class="hljs-built_in">document</span>.dispatchEvent(myEvent);</span>
+        &#125;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre></div>
+
+<h4 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h4><p>通俗地来讲，就是把一个元素响应事件（click、keydown……）的函数委托到另一个元素。</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><h4 id="自由变量"><a href="#自由变量" class="headerlink" title="自由变量"></a>自由变量</h4><p>在函数体内没有定义，需要搜索作用域链的变量。</p>
+<h4 id="作用域链（自由变量的查找）"><a href="#作用域链（自由变量的查找）" class="headerlink" title="作用域链（自由变量的查找）"></a>作用域链（自由变量的查找）</h4><p>一个变量不断向上查找。</p>
+<h4 id="闭包的两个场景"><a href="#闭包的两个场景" class="headerlink" title="闭包的两个场景"></a>闭包的两个场景</h4><p>函数作为参数。</p>
+<p>函数作为返回值。</p>
+<h4 id="块级作用域（let-const）"><a href="#块级作用域（let-const）" class="headerlink" title="块级作用域（let/const）"></a>块级作用域（let/const）</h4><h4 id="执行上下文（函数中this所指向的对象）"><a href="#执行上下文（函数中this所指向的对象）" class="headerlink" title="执行上下文（函数中this所指向的对象）"></a>执行上下文（函数中this所指向的对象）</h4><h2 id="内存泄漏"><a href="#内存泄漏" class="headerlink" title="内存泄漏"></a>内存泄漏</h2><p>意外的全局变量</p>
+<p>闭包</p>
+<p>没有清理的dom元素</p>
+<p>被遗忘的定时器或者回调函数</p>
+<h2 id="call-apply-bind"><a href="#call-apply-bind" class="headerlink" title="call()/apply()/bind()"></a>call()/apply()/bind()</h2><h4 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h4><p>call第一个参数就是this指向的对象。后面就是参数。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">var</span> obj = &#123;
+  message: <span class="hljs-string">&#x27;My name is: &#x27;</span>,
+  name: <span class="hljs-string">&#x27;xrx&#x27;</span>,
+  age: <span class="hljs-number">19</span>
+&#125;
+
+<span class="hljs-keyword">let</span> peson = &#123;
+  name: <span class="hljs-string">&#x27;lms&#x27;</span>,
+  age:<span class="hljs-number">23</span>,
+  <span class="hljs-function"><span class="hljs-title">say</span>(<span class="hljs-params">a=<span class="hljs-number">1</span>,b=<span class="hljs-number">2</span></span>)</span> &#123;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span>已经<span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.age&#125;</span>岁了。。。。<span class="hljs-subst">$&#123;a&#125;</span>,<span class="hljs-subst">$&#123;b&#125;</span>`</span>);
+  &#125;
+&#125;
+peson.say.call(obj,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>);<span class="hljs-comment">//这里就是将say中this的指向改成obj,后面2个是say的参数。</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getName</span>(<span class="hljs-params">firstName, lastName</span>) </span>&#123;
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.message + firstName + <span class="hljs-string">&#x27; &#x27;</span> + lastName)
+&#125;
+
+getName.call(obj,<span class="hljs-string">&#x27;lms&#x27;</span>,<span class="hljs-string">&#x27;xrx&#x27;</span>)</code></pre></div>
+
+<p>apply和call差不多，区别就是后面的参数必须是数组对象。</p>
+<p>bind的作用也差不多，只不过返回的是函数，需要自己手动执行。</p>
+<h4 id="手动模拟call-apply-bind"><a href="#手动模拟call-apply-bind" class="headerlink" title="手动模拟call/apply/bind"></a>手动模拟call/apply/bind</h4>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/03/20/js/">
+                        <span class="hidden-mobile">前端知识体系_js（一）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <span>lms</span> <span> && </span> <span>xrx</span> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

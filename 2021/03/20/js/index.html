@@ -20,7 +20,7 @@
   <meta name="author" content="李名顺">
   <meta name="keywords" content="">
   
-  <title>前端知识体系（js）（一） - zust-lms</title>
+  <title>前端知识体系_js（一） - zust-lms</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -136,7 +136,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="前端知识体系（js）（一）">
+            <span class="h2" id="subtitle" title="前端知识体系_js（一）">
               
             </span>
 
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.4k 字
+      1.7k 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      23
        分钟
     </span>
   
@@ -198,10 +198,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前端知识体系（js）（一）</h1>
+            <h1 style="display: none">前端知识体系_js（一）</h1>
             
             <div class="markdown-body">
-              <h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><p>prototype 原型</p>
+              <h2 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h2><p>prototype 原型</p>
 <p>–proto– 原型链（其实叫它连接点更恰当）</p>
 <p>prototype 是函数的一个属性 是一个对象</p>
 <p>–proto– 是实例对象的一个属性 也是一个对象</p>
@@ -221,7 +221,7 @@
 <p><strong>test.hasOwnProperty()判断数据是否属于当前实例。</strong></p>
 <p><strong>console.log(‘a’ in test) 判断数据是否在原型链上。</strong></p>
 <p><img src="/2021/03/20/js/proto.png" srcset="/img/loading.gif" alt="proto"></p>
-<h4 id="手写instanceof"><a href="#手写instanceof" class="headerlink" title="手写instanceof"></a>手写instanceof</h4><p>如果简单数据的实例不是构造函数定义的，instanceof 失败</p>
+<h2 id="手写instanceof"><a href="#手写instanceof" class="headerlink" title="手写instanceof"></a>手写instanceof</h2><p>如果简单数据的实例不是构造函数定义的，instanceof 失败</p>
 <p>复杂数据的实例 instanceof都能成功。</p>
 <div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Test</span>(<span class="hljs-params"></span>)</span>&#123;&#125;
 
@@ -243,7 +243,7 @@
   &#125;
 &#125;</code></pre></div>
 
-<h4 id="Promise-异步调用"><a href="#Promise-异步调用" class="headerlink" title="Promise 异步调用"></a>Promise 异步调用</h4><p>promise函数其实有三种状态，等待（pending），成功（resolve），失败（reject）。在回调函数中，执行resolve或者reject表明promise的状态。而所带的参数就是传入then的data值。</p>
+<h2 id="Promise-异步调用"><a href="#Promise-异步调用" class="headerlink" title="Promise 异步调用"></a>Promise 异步调用</h2><p>promise函数其实有三种状态，等待（pending），成功（resolve），失败（reject）。在回调函数中，执行resolve或者reject表明promise的状态。而所带的参数就是传入then的data值。</p>
 <p>————————————————————————————</p>
 <p>then() 成功后执行的事件。</p>
 <p>catch()失败后执行的事件。</p>
@@ -252,7 +252,7 @@
 <p>all([1,2,3]) 可以处理多个promise，成功后返回结果数组，失败返回最先被reject失败状态的值。</p>
 <p>race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。</p>
 <p>————————————————————————————</p>
-<h4 id="实现一组异步请求顺序执行（四种方法）"><a href="#实现一组异步请求顺序执行（四种方法）" class="headerlink" title="实现一组异步请求顺序执行（四种方法）"></a>实现一组异步请求顺序执行（四种方法）</h4><div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//实现mergePromise函数，把传进去的数组顺序先后执行，</span>
+<h2 id="实现一组异步请求顺序执行（四种方法）"><a href="#实现一组异步请求顺序执行（四种方法）" class="headerlink" title="实现一组异步请求顺序执行（四种方法）"></a>实现一组异步请求顺序执行（四种方法）</h2><div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">//实现mergePromise函数，把传进去的数组顺序先后执行，</span>
 <span class="hljs-comment">//并且把返回的数据先后放到数组data中</span>
 <span class="hljs-keyword">const</span> timeout = <span class="hljs-function"><span class="hljs-params">ms</span> =&gt;</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;
     <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;
@@ -382,7 +382,7 @@ mergePromise([ajax1, ajax2, ajax3]).then(<span class="hljs-function"><span class
   <span class="hljs-keyword">return</span> run();
 &#125;</code></pre></div>
 
-<h4 id="Generator函数"><a href="#Generator函数" class="headerlink" title="Generator函数"></a>Generator函数</h4><p>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。</p>
+<h2 id="Generator函数"><a href="#Generator函数" class="headerlink" title="Generator函数"></a>Generator函数</h2><p>Generator 函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。</p>
 <div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">gen</span>(<span class="hljs-params">x</span>)</span>&#123;
   <span class="hljs-keyword">var</span> y = <span class="hljs-keyword">yield</span> x + <span class="hljs-number">2</span>;
   <span class="hljs-keyword">return</span> y;
@@ -397,7 +397,39 @@ g.next() <span class="hljs-comment">// &#123; value: undefined, done: true &#125
 <p>上面代码中，调用 Generator 函数，会返回一个内部指针（即遍历器）g 。这是 Generator 函数不同于普通函数的另一个地方，即执行它不会返回结果，返回的是指针对象。调用指针 g 的 next 方法，会移动内部指针（即执行异步任务的第一段），指向第一个遇到的 yield 语句，上例是执行到 x + 2 为止。</p>
 <p>换言之，next 方法的作用是分阶段执行 Generator 函数。每次调用 next 方法，会返回一个对象，表示当前阶段的信息（ value 属性和 done 属性）。value 属性是 yield 语句后面表达式的值，表示当前阶段的值；done 属性是一个布尔值，表示 Generator 函数是否执行完毕，即是否还有下一个阶段。</p>
 <p><span style="color:red">以上Generator函数定义摘自阮一峰的博客。</span></p>
-
+<h2 id="异步加载JS脚本"><a href="#异步加载JS脚本" class="headerlink" title="异步加载JS脚本"></a>异步加载JS脚本</h2><p>Async 异步加载脚本</p>
+<p>defer 延迟加载脚本，在dom树建立后，在winodws.onload前。</p>
+<h2 id="var-let-const"><a href="#var-let-const" class="headerlink" title="var/let/const"></a>var/let/const</h2><p>var和let的作用域有所区别。</p>
+<p>let只在块级作用域中有效，let不能2次定义。</p>
+<p>const不能被修改，而且必须在定义的时候就给它赋值。</p>
+<p>const不能修改的原因不是说数据不能被修改，而是const所指向的栈中的储存空间和地址不能被修改。当const 定义一个对象时，对象中的属性是可以被修改的。</p>
+<h2 id="ES5中定义const"><a href="#ES5中定义const" class="headerlink" title="ES5中定义const"></a>ES5中定义const</h2><div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">var</span> __const = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__const</span> (<span class="hljs-params">data, value</span>) </span>&#123;
+  <span class="hljs-built_in">window</span>.data = value <span class="hljs-comment">// 把要定义的data挂载到window下，并赋值value</span>
+  <span class="hljs-built_in">Object</span>.defineProperty(<span class="hljs-built_in">window</span>, data, &#123; <span class="hljs-comment">// 利用Object.defineProperty的能力劫持当前对象，并修改其属性描述符</span>
+    enumerable: <span class="hljs-literal">false</span>,
+    configurable: <span class="hljs-literal">false</span>,
+    get: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+      <span class="hljs-keyword">return</span> value
+    &#125;,
+    set: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>&#123;
+      <span class="hljs-keyword">if</span> (data !== value) &#123; <span class="hljs-comment">// 当要对当前属性进行赋值时，则抛出错误！</span>
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&#x27;Assignment to constant variable.&#x27;</span>)
+      &#125; <span class="hljs-keyword">else</span> &#123;
+        <span class="hljs-keyword">return</span> value
+      &#125;
+    &#125;
+  &#125;)
+&#125;
+__const(<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-number">10</span>)
+<span class="hljs-built_in">console</span>.log(a)
+<span class="hljs-keyword">delete</span> a
+<span class="hljs-built_in">console</span>.log(a)
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> item <span class="hljs-keyword">in</span> <span class="hljs-built_in">window</span>) &#123; <span class="hljs-comment">// 因为const定义的属性在global下也是不存在的，所以用到了enumerable: false来模拟这一功能</span>
+  <span class="hljs-keyword">if</span> (item === <span class="hljs-string">&#x27;a&#x27;</span>) &#123; <span class="hljs-comment">// 因为不可枚举，所以不执行</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">window</span>[item])
+  &#125;
+&#125;
+a = <span class="hljs-number">20</span> <span class="hljs-comment">// 报错</span></code></pre></div>
             </div>
             <hr>
             <div>
@@ -423,6 +455,12 @@ g.next() <span class="hljs-comment">// &#123; value: undefined, done: true &#125
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/03/27/js1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端知识体系_js（二）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
