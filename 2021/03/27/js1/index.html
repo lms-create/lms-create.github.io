@@ -70,7 +70,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="/">&nbsp;<strong>李名顺的秘密基地</strong>&nbsp;</a>
+       href="/">&nbsp;<strong>李名顺</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.7k 字
     </span>
   
 
@@ -168,12 +168,20 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      25
        分钟
     </span>
   
 
   
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
   
 </div>
 
@@ -406,7 +414,42 @@ getName.call(obj,<span class="hljs-string">&#x27;lms&#x27;</span>,<span class="h
 
 <p>apply和call差不多，区别就是后面的参数必须是数组对象。</p>
 <p>bind的作用也差不多，只不过返回的是函数，需要自己手动执行。</p>
-<h4 id="手动模拟call-apply-bind"><a href="#手动模拟call-apply-bind" class="headerlink" title="手动模拟call/apply/bind"></a>手动模拟call/apply/bind</h4>
+<h4 id="手动模拟call-apply-bind"><a href="#手动模拟call-apply-bind" class="headerlink" title="手动模拟call/apply/bind"></a>手动模拟call/apply/bind</h4><p>call()的模拟</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.MyCall = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context = globalThis,...arr</span>)</span>&#123;
+  context.fn = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">let</span> result = context.fn(...arr);
+  <span class="hljs-keyword">delete</span> context.fn;
+  <span class="hljs-keyword">return</span> result;
+&#125;</code></pre></div>
+
+<p>Apply()的模拟</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.Myapply = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">context = globalThis,[...arr]</span>)</span>
+<span class="hljs-function"></span>&#123;
+  context.fn = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">let</span> result;
+  <span class="hljs-keyword">if</span>(arr)&#123;
+    result = context.fn(...arr);
+  &#125;
+  <span class="hljs-keyword">else</span>&#123;
+    result = context.fn();
+  &#125;
+  <span class="hljs-keyword">delete</span> context.fn;
+  <span class="hljs-keyword">return</span> result;
+&#125;</code></pre></div>
+
+<p>还有一种我觉得很奇特的方法，就是传入的参数如果直接使用会有问题，传入使用的是一个arguments对象，我要把每个参数单独拿出来，但是你又不知道到底有多少参数，在不用拓展运算符的前提下，我们可以这么写:</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.Mycall = <span class="hljs-function"><span class="hljs-title">funciton</span>(<span class="hljs-params">context = globalThis</span>)</span>&#123;
+  context.fn = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">let</span> newArr = [];
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>;i&lt;<span class="hljs-built_in">arguments</span>.length;i++)&#123;
+    newArr.push(<span class="hljs-string">&#x27;arguments[&#x27;</span>+ i + <span class="hljs-string">&#x27;]&#x27;</span>);
+  &#125;
+  <span class="hljs-keyword">let</span> result = <span class="hljs-built_in">eval</span>(<span class="hljs-string">&#x27;context.fn(&#x27;</span>+ newArr +<span class="hljs-string">&#x27;)&#x27;</span>);
+  <span class="hljs-keyword">delete</span> context.fn;
+  <span class="hljs-keyword">return</span> result;
+&#125;</code></pre></div>
+
+<h4 id="手写bind-我先没搞懂，后面再回来看。"><a href="#手写bind-我先没搞懂，后面再回来看。" class="headerlink" title="手写bind()我先没搞懂，后面再回来看。"></a>手写bind()我先没搞懂，后面再回来看。</h4>
             </div>
             <hr>
             <div>
@@ -432,6 +475,12 @@ getName.call(obj,<span class="hljs-string">&#x27;lms&#x27;</span>,<span class="h
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2021/04/02/js2/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端知识体系_js(三)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -540,6 +589,8 @@ getName.call(obj,<span class="hljs-string">&#x27;lms&#x27;</span>,<span class="h
   <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
