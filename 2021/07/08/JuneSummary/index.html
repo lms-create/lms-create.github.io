@@ -20,7 +20,7 @@
   <meta name="author" content="李名顺">
   <meta name="keywords" content="">
   
-  <title>element-ui table展开项默认全展开问题 - zust-lms</title>
+  <title>五、六月总结 - zust-lms</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -136,7 +136,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="element-ui table展开项默认全展开问题">
+            <span class="h2" id="subtitle" title="五、六月总结">
               
             </span>
 
@@ -146,8 +146,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-25 11:21" pubdate>
-        2021年4月25日 上午
+      <time datetime="2021-07-08 14:43" pubdate>
+        2021年7月8日 下午
       </time>
     </span>
   
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      348 字
+      565 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        分钟
     </span>
   
@@ -206,20 +206,12 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">element-ui table展开项默认全展开问题</h1>
+            <h1 style="display: none">五、六月总结</h1>
             
             <div class="markdown-body">
-              <p>在<code>el-table</code>中使用树形结构，我默认需要全部展开。在官方文档中我们可以找到相应的API与示范代码。</p>
-<p><code>default-expand-all</code>——是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效。默认为false。</p>
-<p>按道理来说，我们在table中设置<code>default-exand-all</code>应该就可以实现默认展开所有行。</p>
-<p>但是事实上并没有实现，哭出声，倒腾了好久。</p>
-<p><img src="/2021/04/25/question/1.png" srcset="/img/loading.gif"></p>
-<p>于是我又翻翻文档发现<code>expand-row-keys</code>——可以通过该属性设置 Table 目前的展开行，需要设置 row-key 属性才能使用，该属性为展开行的 keys 数组。结果还是不行。</p>
-<p><img src="/2021/04/25/question/2.png" srcset="/img/loading.gif"></p>
-<p>然后我Google发现网友说，实际上<code>default-expand-all</code>    是在table刚创建还是空值的时候就渲染完成了，等到数据全部渲染完成后,<code>default-expand-all</code>又没有实现所以应该使用<code>v-if</code>判断当数据的长度不为空也就是数据拿到了之后再进行渲染。</p>
-<p>听起来非常有道理的样子，但是我还是没有实现，可能思路是对的叭但是我不知道怎么去实现。</p>
-<p>于是我暴力的把他实现了，思路就是获取所有的点击展开的按钮然后给他做点击事件，就可以全部展开啦。</p>
-<p><img src="/2021/04/25/question/3.png" srcset="/img/loading.gif"></p>
+              <p>来总结一下我的5月份和6月份吧</p>
+<p>五一假期过后，接手了一个项目，项目做了大概的前端布局，剩余的没有开始，其实工期挺长的但是前端后端的进度一直在拖，就导致在这个项目的后期我一直在努力赶进度，加上我是第一次正式的拿项目来做前端的工作，比如一些功能的需求，调接口，因为是第一次所以很多东西都不是很熟悉，这也是导致后期一直在赶的原因之一。这个项目在我看来其实布局的东西其实是简单的，这个项目应该算是数据可视化，所以许多拿到的数据要前端大量的处理过后，渲染到页面上，我是第一次调正式项目的接口，这让我更吃力了，好在在学姐学长的帮助下，我们慢慢的把这个项目完成了，这个项目让我受益匪浅，调接口，处理数据等等，大量的工作，让我的代码能力飞速上升。</p>
+<p>在这个项目后期，又有另一个项目启动了，我负责后台的大部分前端部分，在上一个项目结束之后，我过渡到了下个项目里，这个项目就是我接的第一个完整的后台项目，布局、调接口、改bug。比较顺利，那这个比较顺利的原因是因为公司里的学姐们一直在为我传道授业，我也真的很感谢她们。到了6月上旬，这个项目我完成了我的前端部分，然后开始陆陆续续的在修改一些bug，就到了期末复习阶段了，有一些大作业要我去操心，然后还有一些期末要考试的复习，边复习边在改bug。bug改的也差不多了，期末考试也考完了，6月29号我们考完了考试，我女朋友2号才考完，然后我就开始玩，一直玩一直玩，玩到现在，也快10天了，也该收收心了。开始学习啦！哦对，我还要把科三，科四考了呢。</p>
 
             </div>
             <hr>
@@ -240,18 +232,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/08/JuneSummary/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">五、六月总结</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/22/article/">
-                        <span class="hidden-mobile">vue响应式数据修改的坑</span>
+                      <a href="/2021/04/25/question/">
+                        <span class="hidden-mobile">element-ui table展开项默认全展开问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
