@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/null">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="保持热爱，奔赴山海">
+  
+  <meta name="author" content="李名顺">
+  <meta name="keywords" content="">
+  
+  <title>如何写出call、apply、bind - zust-lms</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>李名顺</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/88369330_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="如何写出call、apply、bind">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-04 14:04" pubdate>
+        2022年1月4日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      24
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">如何写出call、apply、bind</h1>
+            
+            <div class="markdown-body">
+              <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>我先直接贴上代码，有些同学来就想看代码，俺已经拿捏了，直接给你们看：</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* call实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyCall = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that,...args</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> _this = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">const</span> fn = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;fn&#x27;</span>);
+  that[fn] = _this;
+  <span class="hljs-keyword">let</span> result = that[fn](...args);
+  <span class="hljs-keyword">delete</span> that[fn];
+  <span class="hljs-keyword">return</span> result;
+&#125;</code></pre></div>
+
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* apply实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyApply = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that,args</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> _this = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">const</span> fn = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;fn&#x27;</span>);
+  that[fn] = _this;
+  <span class="hljs-keyword">let</span> result = that[fn](...args);
+  <span class="hljs-keyword">delete</span> that[fn];
+  <span class="hljs-keyword">return</span> result;
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* bind实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyBind = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> _self = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>,<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">let</span> fnNop = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;&#125;;
+  <span class="hljs-keyword">let</span> fnBound = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">let</span> _this = <span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> _self ? <span class="hljs-built_in">this</span> : that;
+    <span class="hljs-keyword">return</span> _self.call(_this,args.concat(...arguments));
+  &#125;
+  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.prototype) &#123;
+    fnNop.prototype = <span class="hljs-built_in">this</span>.prototype;
+  &#125;
+  fnBound.prototype = <span class="hljs-keyword">new</span> fnNop()
+  <span class="hljs-keyword">return</span> fnBound;
+&#125;</code></pre></div>
+<p>那么接下来如果我们需要去手写call()、bind()、apply()，我们就需要知道他们到底做了什么，处于Function.prototype中的这三个函数可以<strong>显式的修改函数执行时的this指向</strong>。很明显这里的关键是<strong>如何修改this指向</strong>，我将一步步讲解手写这些函数所需要的技术细节。</p>
+<h5 id="this指向"><a href="#this指向" class="headerlink" title="this指向"></a>this指向</h5><p><strong>标准函数的<code>this</code>指向执行函数时这个函数所处的上下文对象</strong>，箭头函数的this指向定义箭头函数的上下文对象。这里我们只讨论标准函数的this指向。  </p>
+<p>我相信大多数人刚开始和我都一样，看到上下文对象这几个字就脑壳疼，啥是上下文呀，然后就开始翻一翻js高程，一看还真有执行上下文的介绍，然后开始看书，然后看书上一大堆文字更晕了，啪的一下书关的很快啊。  </p>
+<p>其实上下文对象就是一个对象（Object）,这个Object里有好多的属性，函数在执行的时候，就在这个Object里找，若函数中执行<strong>this.xxx</strong>，就表示在这个Object中查找xxx这个值。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/deff1b97303041399024e7e749be4d8b~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
+<h5 id="如何实现call"><a href="#如何实现call" class="headerlink" title="如何实现call"></a>如何实现call</h5><p>我们现在来理一下实现call的逻辑。  </p>
+<p>call是在函数调用中的函数，第一个参数为需要修改为的this指向，可以理解为我要把这个函数放在这个<code>this</code>中调用，脑海中浮现出我上面画的图，<code>this</code>可以看做obj，<strong>也就是说可以看作将这个函数放在这个obj中调用</strong>。第二个参数是需要向函数中传入的参数。由此我们可以写出基本框架，如下：</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.Mycall = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that,...args</span>) </span>&#123;
+&#125;</code></pre></div>
+<p>这里我解释一下为什么要在<code>Function.prototype</code>中定义方法。  </p>
+<p>函数是由Function构造函数构造的一个对象，本质上也是一个对象，所以当在这个对象中没有call方法时，就会在<code>proto</code>中查找方法，<code>proto</code>指向构造函数的<code>prototype</code>。  </p>
+<p>我们都知道<strong>构造函数产生实例对象</strong>是通过<code>new</code>实现的，那么对我们来说了解new的过程中发生了什么能让我们更加深入的理解上述问题。  </p>
+<p>new的过程由4步组成： </p>
+<blockquote>
+<ol>
+<li>创建一个新对象。</li>
+<li>将构造函数的prototype赋值给新对象的proto。</li>
+<li>在新对象的上下文中执行构造函数，初始化属性和值。</li>
+<li>返回这个新对象。</li>
+</ol>
+</blockquote>
+<p>结合原型链与new的知识，所以我们可以知道每个由Function构造的函数都可以使用到<code>Function.prototype</code>中的方法.  </p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.MyCall = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that,...args</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> _this = <span class="hljs-built_in">this</span>;
+  ......
+&#125;</code></pre></div>
+
+<p>call显式的修改this指向，通俗的来说就是需要<strong>将调用call方法的函数放在指定的上下文对象中执行</strong>，所以我们如何能在call方法中获取到调用call方法的函数本身呢？ </p>
+<p>我们来看一下上面这段代码中的<code>const _this = this</code>，在实际的使用中，会有一个函数调用call方法,再回顾一下上面我说的一句话<strong>标准函数的<code>this</code>指向执行函数时这个函数所处的上下文对象</strong>，现在这个<code>call函数</code>就是我们要执行的函数，而所处的<strong>上下文对象</strong>就是执行call函数的函数(<strong>本质上也是一个对象</strong>)。所以<code>this</code>就是我们获取到的调用call方法的函数本身。</p>
+<p>我们拿到了需要改变this指向的函数，知道了在什么对象中执行，所以我们就能手写实现call。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* call实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyCall = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that,...args</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> _this = <span class="hljs-built_in">this</span>; <span class="hljs-comment">//获取需要改变this的函数自身，也就是调用call的这个函数</span>
+  <span class="hljs-keyword">const</span> fn = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;fn&#x27;</span>); <span class="hljs-comment">//定义一个唯一值，防止与对象中的键名冲突。</span>
+  that[fn] = _this; <span class="hljs-comment">// 在这个对象中定义键值对，键为fn，值为函数。</span>
+  <span class="hljs-keyword">let</span> result = that[fn](...args); <span class="hljs-comment">// 在that上下文中调用函数，也就修改了this的指向。</span>
+  <span class="hljs-keyword">delete</span> that[fn]; <span class="hljs-comment">// 删除属性，消除引用，防止内存泄漏。</span>
+  <span class="hljs-keyword">return</span> result; <span class="hljs-comment">//返回函数调用返回值</span>
+&#125;</code></pre></div>
+
+<h5 id="如何实现apply"><a href="#如何实现apply" class="headerlink" title="如何实现apply"></a>如何实现apply</h5><p>和实现call大同小异，就是变成了参数数组。所以参数只有2个，第二个参数为数组。后面用拓展运算符展开传参。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* apply实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyApply = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that,args</span>) </span>&#123;
+  <span class="hljs-keyword">const</span> _this = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">const</span> fn = <span class="hljs-built_in">Symbol</span>(<span class="hljs-string">&#x27;fn&#x27;</span>);
+  that[fn] = _this;
+  <span class="hljs-keyword">let</span> result = that[fn](...args);
+  <span class="hljs-keyword">delete</span> that[fn];
+  <span class="hljs-keyword">return</span> result;
+&#125;</code></pre></div>
+
+<h5 id="如何实现bind"><a href="#如何实现bind" class="headerlink" title="如何实现bind"></a>如何实现bind</h5><p>bind就是返回一个函数嘛，<code>_self</code>获取的就是函数自身上面已经阐述过了，这里<code>Array.prototype.slice.call(arguments,1)</code>，就是借用了Array的slice把除了that的后面的参数都切割出来。然后新建一个函数返回。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* bind实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyBind = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> _self = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>,<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">let</span> fnBound = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">return</span> _self.call(that,args.concat(...arguments));
+  &#125;
+  <span class="hljs-keyword">return</span> fnBound;
+&#125;</code></pre></div>
+
+<p>事实真有这么简单吗？哈哈哈当然没有。  </p>
+<p>我们要知道一个函数是可以通过new来实例化一个对象的。<br>当我们如下操作时：</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">let</span> fn = 函数.MyBind(obj);
+<span class="hljs-keyword">let</span> res = <span class="hljs-keyword">new</span> fn(); <span class="hljs-comment">// 出大问题</span></code></pre></div>
+
+<p>再让我们回想一下之前new的4个步骤：</p>
+<blockquote>
+<ol>
+<li>创建一个新对象。</li>
+<li>将构造函数的prototype赋值给新对象的proto。</li>
+<li>在新对象的上下文中执行构造函数，初始化属性和值。</li>
+<li>返回这个新对象。</li>
+</ol>
+</blockquote>
+<p>所以关键是我们要区分bind返回的函数最后是<strong>正常的调用</strong>，还是<strong>通过new去实例化了一个对象</strong>。   这决定了调用bind的这个函数最后在什么上下文中执行。</p>
+<p>看一下实现bind的代码中的这一段。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* bind实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyBind = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that</span>) </span>&#123;
+  ......
+  <span class="hljs-keyword">let</span> fnBound = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+    <span class="hljs-keyword">let</span> _this = <span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> _self ? <span class="hljs-built_in">this</span> : that;
+    <span class="hljs-keyword">return</span> _self.call(_this,args.concat(...arguments));
+  &#125;
+  ......
+  <span class="hljs-keyword">return</span> fnBound;
+&#125;</code></pre></div>
+<p><code>this instanceof _self ? this : that</code> 这句代码为什么可以用作区分呢？  </p>
+<p>第一种情况：当函数正常的调用时，函数的this<strong>指向执行函数的上下文对象</strong>。很明显<code>this instanceof _self === false</code>，所以会执行<code>_self.call(that)</code>,也就是会在他原先约定好的that上下文中调用函数。</p>
+<p>第二种情况：当函数通过new去实例化了一个对象，看到new的第3步，<strong>构造函数的this指向这个新对象</strong>。那么关键是为什么<code>this instanceof _self === true</code>,我们看到new的第二步是将构造函数的prototype赋值给新对象的proto,所以如何能使<strong>新对象在原型链中沿着proto查找到_self</strong>，是我们要在代码中实现的。结合代码解析：</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-comment">/* bind实现 */</span>
+<span class="hljs-built_in">Function</span>.prototype.MyBind = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">that</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> _self = <span class="hljs-built_in">this</span>;
+  <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">Array</span>.prototype.slice.call(<span class="hljs-built_in">arguments</span>,<span class="hljs-number">1</span>);
++  <span class="hljs-keyword">let</span> fnNop = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;&#125;; <span class="hljs-comment">// 创建一个函数</span>
+  <span class="hljs-keyword">let</span> fnBound = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
++    <span class="hljs-keyword">let</span> _this = <span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> _self ? <span class="hljs-built_in">this</span> : that; <span class="hljs-comment">// 关键判断</span>
+    <span class="hljs-keyword">return</span> _self.call(_this,args.concat(...arguments));
+  &#125;
++  <span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.prototype) &#123; 
++    fnNop.prototype = <span class="hljs-built_in">this</span>.prototype;
++  &#125;
++  fnBound.prototype = <span class="hljs-keyword">new</span> fnNop() 
+<span class="hljs-comment">// 思考new定义可以得出，此处将fnNop.prototype =&gt; funBound.prototype.__proto__</span>
+<span class="hljs-comment">// 所以 fnBound.prototype.__proto__ =&gt; fnNop.prototype =&gt; _self.prototype</span>
+  <span class="hljs-keyword">return</span> fnBound;
+&#125;</code></pre></div>
+
+<p>所以当函数通过new去实例化了一个对象时，第2步：<code>新对象.__proto__ =&gt; fnBound.prototype</code>,第3步：当构造函数的this指向这个新对象时，就满足了<code>this instanceof _self === true</code>，所以<strong>调用bind的这个函数就会在新对象的上下文中执行</strong>！</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/01/My2021/">
+                        <span class="hidden-mobile">我的2021</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <span>lms</span> <span> && </span> <span>xrx</span> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
