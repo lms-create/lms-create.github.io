@@ -20,7 +20,7 @@
   <meta name="author" content="李名顺">
   <meta name="keywords" content="">
   
-  <title>vue响应式数据修改的坑 - zust-lms</title>
+  <title>JavaScript中的浮点数精度问题 - zust-lms</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -136,7 +136,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="vue响应式数据修改的坑">
+            <span class="h2" id="subtitle" title="JavaScript中的浮点数精度问题">
               
             </span>
 
@@ -146,8 +146,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-04-22 15:04" pubdate>
-        2021年4月22日 下午
+      <time datetime="2022-01-14 18:28" pubdate>
+        2022年1月14日 晚上
       </time>
     </span>
   
@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      518 字
+      1.2k 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      14
        分钟
     </span>
   
@@ -206,29 +206,50 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vue响应式数据修改的坑</h1>
+            <h1 style="display: none">JavaScript中的浮点数精度问题</h1>
             
             <div class="markdown-body">
-              <p>这天室友遇到了一个问题，他问我，我一开始也很疑惑，他的代码是这样的：</p>
-<p><img src="/2021/04/22/article/1.png" srcset="/img/loading.gif" alt="室友写的代码"></p>
-<p>他想写一个列表，然后动态绑定了列表里每条的样式，点击哪一条就给哪一条绑定红色。逻辑上来说他这么写是可以的。</p>
-<p><img src="/2021/04/22/article/2.png" srcset="/img/loading.gif" alt="页面中显示"></p>
-<p><img src="/2021/04/22/article/3.png" srcset="/img/loading.gif" alt="点击后数组的值在随之变化"></p>
-<p>将改变后的布尔值打印出来也是可以看到，数组中保存的bool在随着点击而改变，但是再看页面中的列表，样式并没有在我们的预测之中改变。这就使我们很疑惑了。</p>
-<p>随即我对代码进行了改变。</p>
-<p><img src="/2021/04/22/article/4.png" srcset="/img/loading.gif" alt="改变代码"></p>
-<p>这里我将数组中储存的布尔值改成对象，于是就成功的实现出来了，这下就更令我疑惑了，为什么之前那么写不可以呢，明明逻辑上是说的过去的。但是到了这里我基本上可以确定是数据在改变后，没有响应式的改变数据，应该是跟vue的数据响应原理有关。</p>
-<p>在浏览了有关文档后发现</p>
-<h4 id="通过索引修改数组的值不会触发视图更新！"><a href="#通过索引修改数组的值不会触发视图更新！" class="headerlink" title="通过索引修改数组的值不会触发视图更新！"></a>通过索引修改数组的值不会触发视图更新！</h4><p>关于vue的数据绑定原理</p>
-<p>当你把一个普通的 JavaScript 对象传给 Vue 实例的 data 选项，Vue 将遍历此对象所有的属性，并使用 Object.defineProperty 把这些属性全部转为 getter/setter。</p>
-<p>但是getter/setter是有局限性的。</p>
-<p>通过实验可以得到：</p>
-<h5 id="当该属性的值为一个数组时，通过索引修改数组某一项的值或使用数组的某些方法修改数组并不能触发set；当属性的值为一对象时，直接修改对象中属性的值时也无法触发set。"><a href="#当该属性的值为一个数组时，通过索引修改数组某一项的值或使用数组的某些方法修改数组并不能触发set；当属性的值为一对象时，直接修改对象中属性的值时也无法触发set。" class="headerlink" title="当该属性的值为一个数组时，通过索引修改数组某一项的值或使用数组的某些方法修改数组并不能触发set；当属性的值为一对象时，直接修改对象中属性的值时也无法触发set。"></a>当该属性的值为一个数组时，通过索引修改数组某一项的值或使用数组的某些方法修改数组并不能触发set；当属性的值为一对象时，直接修改对象中属性的值时也无法触发set。</h5><p>所以我们在需要通过修改数据的值来更新视图的时候就要注意了。</p>
-<p>这里官方文档也给出了相应的解决方案：</p>
-<p>第一种，通过Vue.set()来修改。</p>
-<p>第二种，可以使用 splice。</p>
-<p>我遇到的这个问题就是第一种，于是：</p>
-<p><img src="/2021/04/22/article/5.png" srcset="/img/loading.gif" alt="解决方案"></p>
+              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>javascript中的Number类型使用<code>IEEE754</code>格式表示整数和浮点数（在js中浮点数表示的是双精度值）。在我们平时的看书或者实践中，会发现当某些小数相加时，会出现结果和你想要的不一致，比如会出现<code>0.1 + 0.2 !== 0.3</code>的情况，这时大部分书上都会告诉我们永远不要测试某些特定的浮点数，但是为什么会出现这样的问题却没有细说，那么现在我们大家一起来探索IEEE754的世界吧！</p>
+<h2 id="IEEE754标准"><a href="#IEEE754标准" class="headerlink" title="IEEE754标准"></a>IEEE754标准</h2><p>根据IEEE754的标准，我们来看一下浮点数在计算机中的存储格式。IEEE标准中规定<code>单精度浮点数</code>在机器中表示用 1 位表示数字的符号，用 8 位表示指数，用 23 位表示尾数，即小数部分。对于<code>双精度浮点数</code>，用 1 位表示符号，用 11 位表示指数，52 位表示尾数，其中指数域称为阶码。如图所示：</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/09a1d2f2018f4987b88fb8b91dd96399~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
+<h2 id="浮点数的机器码运算"><a href="#浮点数的机器码运算" class="headerlink" title="浮点数的机器码运算"></a>浮点数的机器码运算</h2><p>此时我们需要考虑一下如何将一个浮点数转化成机器码。  </p>
+<blockquote>
+<p>十进制转换成机器码 ： <code>符号位（1）+ 阶码（8/11）+ 尾数域（23/52）</code></p>
+</blockquote>
+<h3 id="阶码"><a href="#阶码" class="headerlink" title="阶码"></a>阶码</h3><p>通常我们把指数域称为阶码。那我们如何计算阶码呢？IEE754 规定浮点数阶码 E 采用”<strong>指数ｅ的移码-1</strong>“来表示。所以我们这里又抛出了一个问题，如何计算指数e的移码。  </p>
+<p><strong>移码</strong>（又叫增码）是对真值补码的符号位取反，一般用作浮点数的阶码，引入的目的是便于浮点数运算时的对阶操作。  </p>
+<p>由原码变成反码和补码有如下规则：  </p>
+<blockquote>
+<ol>
+<li>原码符号位为1不变，整数的每一位二进制数位求反得反码；</li>
+<li>反码符号位为1不变，反码数值位最低位加1得补码。</li>
+</ol>
+</blockquote>
+<p>所以我们可以得知从原码到移码的过程如下:</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c75ae5edc6e84169becdb001f324e8bb~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
+<h3 id="浮点数规格化"><a href="#浮点数规格化" class="headerlink" title="浮点数规格化"></a>浮点数规格化</h3><p>因为指数和尾数的变化是多样的，比如11可以表示为 <code>1.1 * 10 ^1</code>, 也可以表示为<code>0.11 * 10 ^2</code>、<code>0.011 * 10 ^3</code>等等。所以我们必须要对浮点数进行规格化，若不对浮点数的表示作出明确规定，同一个浮点数的表示就不是唯一的。当尾数不为 0 时，<strong>尾数域的最高有效位为1</strong>，这称为浮点数的规格化。通俗点讲就是<code>1001.11(二进制)</code>要表示成<code>1.00111* 10^3</code>, <code>0.001(二进制)</code>表示为<code>1.0 * 10^ -3</code>。</p>
+<h3 id="计算过程举例"><a href="#计算过程举例" class="headerlink" title="计算过程举例"></a>计算过程举例</h3><p><code>1、0.5</code></p>
+<p><code>0.5=(0.1)2</code>，符号位<code>S</code>为<code>0</code>，指数为<code>e = − 1</code>，规格化后尾数为<code>1.0</code>。</p>
+<p>单精度浮点数尾数域共23位，右侧以0补全，尾数域：    </p>
+<p><code>M=[000 0000 0000 0000 0000 0000]2</code></p>
+<p>阶码E:  </p>
+<p><code>E = [− 1]移−1 = [01111111] − 1 = [01111110]</code></p>
+<p>对照单精度浮点数的存储格式，将符号位S，阶码E和尾数域M存放到指定位置，得0.5的机器码：  </p>
+<p><code>0.5=[0011 1111 0000 0000 0000 0000 0000 0000]2</code></p>
+<hr>
+<p><code>2、-12.5</code></p>
+<p><code>-12.5=(-1100.1)2</code>，符号位<code>S</code>为<code>1</code>，指数为<code>e = 3</code>，规格化后尾数为<code>1.1001</code>。</p>
+<p>单精度浮点数尾数域共23位，右侧以0补全，尾数域：    </p>
+<p><code>M=[100 1000 0000 0000 0000 0000]2</code></p>
+<p>阶码E:  </p>
+<p><code>E = [3]移−1 = [10000011] − 1 = [10000010]</code></p>
+<p>对照单精度浮点数的存储格式，将符号位S，阶码E和尾数域M存放到指定位置，得0.5的机器码：  </p>
+<p><code>-12.5=[1100 0001 0100 1000 0000 0000 0000 0000]2</code></p>
+<h2 id="浮点数的精度"><a href="#浮点数的精度" class="headerlink" title="浮点数的精度"></a>浮点数的精度</h2><p>如果有认真的看到这里，自己对于浮点数的精度也应该有所思索了，尾数域就表示的是小数的精度。  </p>
+<p><code>单精度的尾数域二进制为23位</code>，若加上浮点数规格化的一位，那么单精度能表示的最大值为2^24 = 16777216,也就是表示小数点位后7～8位，最差也能表示7位。而<code>双精度的尾数域为52位</code>，则2^53 = 9007199254740992, 所以在javascript中的，浮点数所能表示的最大精度为15～16位。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>最后再让我们来思考一下为什么 <code>（0.1 + 0.2 = 0.3） === flase</code></p>
+<p>当我们将0.2转化为机器码时，我们会发现0.2转化为二进制时是无限循环的，而js中的浮点数（双精度）的尾数域只有53位，二进制并不能准确的表示0.2，所以在相加后会出现舍入问题。</p>
+<p>其实，我们去思考这个问题的时候，这个结论完全可以解决我们的疑惑，但是我们作为初学者不能丢失了我们对于事物的好奇心、求知欲，或许这些品质就会成为我们最锋利的刃，当我们遇到困难、瓶颈时，总能迎刃而解。</p>
 
             </div>
             <hr>
@@ -239,7 +260,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%A1%B9%E7%9B%AE%E9%97%AE%E9%A2%98/">项目问题</a>
+                      <a class="hover-with-bg" href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
                     
                   </div>
                 
@@ -256,9 +277,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/25/question/">
+                      <a href="/2022/01/29/webpack/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">element-ui table展开项默认全展开问题</span>
+                        <span class="hidden-mobile">webpack基本原理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -266,8 +287,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/05/study/">
-                        <span class="hidden-mobile">学习记录</span>
+                      <a href="/2022/01/04/2022-1-4/">
+                        <span class="hidden-mobile">如何写出call、apply、bind</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

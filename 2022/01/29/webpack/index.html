@@ -234,10 +234,10 @@
 <li>对<code>module</code>新增的依赖，递归此过程。直到依赖解析完毕。</li>
 </ol>
 <h2 id="三、生成阶段"><a href="#三、生成阶段" class="headerlink" title="三、生成阶段"></a>三、生成阶段</h2><ol>
-<li>创建chunkGraph对象。</li>
-<li>遍历compilation.module集合，将module按entry/动态引入划分chunk。</li>
-<li>划分完成后，调用createModuleAssets和createChunkAssets遍历module和chunk，调用compilation.emitAssets方法将assets信息记录到compilation.assets对象中。</li>
-<li>触发seal回调函数，控制流回到compiler对象。</li>
+<li>创建<code>chunkGraph</code>对象。</li>
+<li>遍历<code>compilation.module</code>集合，将<code>module</code>按<code>entry/动态引入</code>划分chunk。</li>
+<li>划分完成后，调用createModuleAssets和createChunkAssets遍历module和<code>chunk</code>，调用<code>compilation.emitAssets</code>方法将<code>assets</code>信息记录到<code>compilation.assets</code>对象中。</li>
+<li>触发seal回调函数，控制流回到<code>compiler</code>对象。</li>
 </ol>
 
             </div>
@@ -270,8 +270,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/01/04/2022-1-4/">
-                        <span class="hidden-mobile">如何写出call、apply、bind</span>
+                      <a href="/2022/01/14/Number/">
+                        <span class="hidden-mobile">JavaScript中的浮点数精度问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
