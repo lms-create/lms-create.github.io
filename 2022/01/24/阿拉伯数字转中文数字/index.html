@@ -210,7 +210,7 @@
             
             <div class="markdown-body">
               <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>首先给大家看一下这个样例的通过情况。现在的代码1万亿以下估计都应该都满足，要是还想大就把单位数组再添点单位哈哈哈，这道题我是大体思路确定后，边写边考虑一些特殊情况的，可能代码还可以优化，大家可以去试着优化一下，反正总体思路应该没问题，感觉特殊的情况还是比较多，适合早上起床清醒的时候去模拟一下。</p>
-<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d10a1d34bbd747149b14728c2b790186~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif" alt="截屏2022-01-24 下午9.47.50.png"></p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d10a1d34bbd747149b14728c2b790186~tplv-k3u1fbpfcp-watermark.image" srcset="/img/loading.gif"></p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>举个例子大家估计都明白了。  </p>
 <p>一串数字比如说<code>123412341234</code>,思考一下就知道从个位数开始每4位数的规则其实是一样的,大家用中文表示一下这串数字，是<code>一千二百三十四</code><strong>亿</strong><code>一千二百三十四</code><strong>万</strong><code>一千二百三十四</code>，很明显以万、亿等单位区分的区间转换的规则是一样的，所以我们就可以先考虑<code>0～9999</code>这个区间的转换规则。  </p>
 <p>从千位到个位转换也行，从个位到千位转换也可以，我这里是从小到大转换的，当然我也建议大家从低位到高位去转换，会方便一点，举个例子，从低位到高位的好处是什么呢，就是一定是先有个位再有十位再有百位的，我们到最高位后就停止转换，就完成了，但是从高位到低位，我们不能保证所有的数字都一定是从某一位开始的，有可能是千位开始的，百位开始的，我们得考虑多种情况，所以推荐大家从低位开始转换，会方便很多。  </p>

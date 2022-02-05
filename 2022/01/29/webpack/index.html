@@ -158,7 +158,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      268 字
+      1.9k 字
     </span>
   
 
@@ -168,7 +168,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      22
        分钟
     </span>
   
@@ -209,7 +209,8 @@
             <h1 style="display: none">webpack基本原理</h1>
             
             <div class="markdown-body">
-              <p><code>webpack</code>打包大致分为3个阶段。</p>
+              <p><img src="/2022/01/29/webpack/webpack.png" srcset="/img/loading.gif"></p>
+<p><code>webpack</code>打包大致分为3个阶段。</p>
 <ol>
 <li><p>初始化阶段。</p>
 </li>
@@ -218,27 +219,135 @@
 <li><p>生成阶段。</p>
 </li>
 </ol>
+<p>在开始前，先阐述一下各个名词的含义。</p>
+<ul>
+<li><p><code>Compiler</code>：是编译管理器，在整个webpack编译过程中一直存活直到结束退出。</p>
+</li>
+<li><p><code>Compilation</code> ：单次编译的管理器，每次文件变更触发重新编译时，会新构建一次compilation对象。</p>
+</li>
+<li><p><code>Dependence</code>： 依赖对象，webpack基于该类型记录模块间依赖关系。在webpack4中，会在module中记录依赖关系，比如使用module.issuer记录当前资源的引用者等。</p>
+</li>
+<li><p><code>Module</code>：webpack内部的资源都会以module对象的形式存在，所有关于资源的操作、合并、转译都是以此为单位进行的。</p>
+</li>
+<li><p><code>Chunk</code>：webpack编译完成准备输出时，会将module以特定的规则组织成一个个chunk，最后写入文件系统输出。</p>
+</li>
+<li><p><code>Loader</code>：资源转换器，对所有的依赖资源进行转译的函数。</p>
+</li>
+<li><p><code>Plugin</code>：在webpack的编译过程中，会调用一个个的Hook函数，plugin会监听对应特定时间点的hook函数，介入编译过程，在初始化创建完之后，要将所有的插件挂载到生命周期中，以实现在生命周期中自身的作用。</p>
+</li>
+</ul>
 <h2 id="一、初始化阶段"><a href="#一、初始化阶段" class="headerlink" title="一、初始化阶段"></a>一、初始化阶段</h2><ol>
-<li>构建参数，通过<code>process.args</code> + <code>webpack.config.js</code>合成用户配置。</li>
-<li>通过<code>vaildateSchema</code>函数校验配置，生成最终配置后。</li>
-<li>创建<code>compiler</code>对象。</li>
-<li>遍历用户自身配置的<code>plugin</code>集合，执行<code>apply</code>方法。</li>
-<li>调用<code>new WebpackOptionsApply().process</code>方法，加载内置插件。</li>
+<li><p>构建参数，通过<code>process.args</code> + <code>webpack.config.js</code>合成用户配置。</p>
+</li>
+<li><p>通过<code>vaildateSchema</code>函数校验配置，生成最终配置后。</p>
+</li>
+<li><p>创建<code>compiler</code>对象。</p>
+</li>
+<li><p>遍历用户自身配置的<code>plugin</code>集合，执行<code>apply</code>方法。</p>
+</li>
+<li><p>调用<code>new WebpackOptionsApply().process</code>方法，加载内置插件。</p>
+</li>
+<li><p>执行compiler对象中的<code>run</code>方法。</p>
+</li>
 </ol>
+<h3 id="拓展知识"><a href="#拓展知识" class="headerlink" title="拓展知识"></a>拓展知识</h3><h4 id="Tapbale"><a href="#Tapbale" class="headerlink" title="Tapbale"></a>Tapbale</h4><p>webpack的plugin插件体系是构建在tapable库之上的，tapable本质上围绕着“发布订阅”模式的架构展开的。</p>
+<p>tapable将webpack中的钩子函数分为几类。</p>
+<p>按回调逻辑，分为：</p>
+<p>基本类型：名称不带 <code>Waterfall/Bail/Loop</code> 关键字，与通常 <strong>「订阅/回调」</strong> 模式相似，按钩子注册顺序，逐次调用回调</p>
+<p><code>bail</code> 类型：逐次调用回调，若有任何一个回调返回非 <code>undefined</code> 值，则终止后续调用。</p>
+<p><code>loop</code> 类型：逐次、循环调用，直到所有回调函数都返回 <code>undefined</code></p>
+<p>按执行回调的并行方式，分为：</p>
+<p><code>async</code> ：异步执行，支持传入 <code>callback</code> 或 <code>promise</code> 风格的异步回调函数，支持 <code>callAsync/tapAsync</code> 、<code>promise/tapPromise</code> 两种调用语句</p>
+<p><code>sync</code> ：同步执行，启动后会按次序逐个执行回调，支持 <code>call/tap</code> 调用语句</p>
+<p>所有钩子都可以按名称套进这两条规则里面，对插件开发者来说不同类型的钩子会直接影响到回调函数的写法，以及插件与其他插件的互通关系，但是有一些基本能力、概念是通用的：<code>tap/call</code>、<code>intercept</code>、<code>context</code>、动态编译等。</p>
+<p>tapable还有中间件的机制，会在call、tap这些函数调用时触发。</p>
+<p>还有HookMap提供集合操作的能力。</p>
+<h4 id="Dependency-Graph"><a href="#Dependency-Graph" class="headerlink" title="Dependency Graph"></a>Dependency Graph</h4><p>将webpack4中的依赖关系解耦出一套新的数据结构，用来存储module中的依赖关系。</p>
+<p>在这其中有_dependencyMap、 _moduleMap。</p>
+<p>_dependencyMap：存了自己对应的Module和依赖自己的Module。</p>
+<p>_moduleMap：每个module的都有自己依赖了那些module和依赖自己的module的Set结构。</p>
+<div class="code-wrapper"><pre><code class="hljs js">ModuleGrah: &#123;
+  _dependencyMap: <span class="hljs-function"><span class="hljs-title">Map</span>(<span class="hljs-params"><span class="hljs-number">3</span></span>)</span>&#123;
+        &#123; 
+            EntryDependency&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125; =&gt; ModuleGraphConnection&#123;
+                <span class="hljs-built_in">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125;, 
+                <span class="hljs-comment">// 入口模块没有引用者，故设置为 null</span>
+                originModule: <span class="hljs-literal">null</span>
+            &#125; 
+        &#125;,
+        &#123; 
+            HarmonyImportSideEffectDependency&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/a.js&quot;</span>&#125; =&gt; ModuleGraphConnection&#123;
+                <span class="hljs-built_in">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/a.js&quot;</span>&#125;, 
+                originModule: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125;
+            &#125; 
+        &#125;,
+        &#123; 
+            HarmonyImportSideEffectDependency&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/a.js&quot;</span>&#125; =&gt; ModuleGraphConnection&#123;
+                <span class="hljs-built_in">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/b.js&quot;</span>&#125;, 
+                originModule: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125;
+            &#125; 
+        &#125;
+    &#125;,
+
+    _moduleMap: <span class="hljs-function"><span class="hljs-title">Map</span>(<span class="hljs-params"><span class="hljs-number">3</span></span>)</span>&#123;
+        NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125; =&gt; ModuleGraphModule&#123;
+            incomingConnections: <span class="hljs-built_in">Set</span>(<span class="hljs-number">1</span>) [
+                <span class="hljs-comment">// entry 模块，对应 originModule 为null</span>
+                ModuleGraphConnection&#123; <span class="hljs-attr">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125;, <span class="hljs-attr">originModule</span>:<span class="hljs-literal">null</span> &#125;
+            ],
+            outgoingConnections: <span class="hljs-built_in">Set</span>(<span class="hljs-number">2</span>) [
+                <span class="hljs-comment">// 从 index 指向 a 模块</span>
+                ModuleGraphConnection&#123; <span class="hljs-attr">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/a.js&quot;</span>&#125;, <span class="hljs-attr">originModule</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125; &#125;,
+                <span class="hljs-comment">// 从 index 指向 b 模块</span>
+                ModuleGraphConnection&#123; <span class="hljs-attr">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/b.js&quot;</span>&#125;, <span class="hljs-attr">originModule</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125; &#125;
+            ]
+        &#125;,
+        NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/b.js&quot;</span>&#125; =&gt; ModuleGraphModule&#123;
+            incomingConnections: <span class="hljs-built_in">Set</span>(<span class="hljs-number">1</span>) [
+                ModuleGraphConnection&#123; <span class="hljs-attr">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/a.js&quot;</span>&#125;, <span class="hljs-attr">originModule</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125; &#125;
+            ],
+            <span class="hljs-comment">// a 模块没有其他依赖，故 outgoingConnections 属性值为 undefined</span>
+            outgoingConnections: <span class="hljs-literal">undefined</span>
+        &#125;,
+        NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/b.js&quot;</span>&#125; =&gt; ModuleGraphModule&#123;
+            incomingConnections: <span class="hljs-built_in">Set</span>(<span class="hljs-number">1</span>) [
+                ModuleGraphConnection&#123; <span class="hljs-attr">module</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/b.js&quot;</span>&#125;, <span class="hljs-attr">originModule</span>: NormalModule&#123;<span class="hljs-attr">request</span>: <span class="hljs-string">&quot;./src/index.js&quot;</span>&#125; &#125;
+            ],
+            <span class="hljs-comment">// b 模块没有其他依赖，故 outgoingConnections 属性值为 undefined</span>
+            outgoingConnections: <span class="hljs-literal">undefined</span>
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+
+<p>主要就是方便信息索引，和转变成chunkGraph。</p>
 <h2 id="二、构建阶段"><a href="#二、构建阶段" class="headerlink" title="二、构建阶段"></a>二、构建阶段</h2><ol>
+<li>创建<code>compilation</code>对象，在<code>compilation</code>对象调用make钩子开始构建。</li>
 <li>创建<code>module</code>子类。</li>
 <li>通过<code>loader-runner</code>仓库对<code>module</code>内容进行转译，转译成<code>javaScript</code>文本。</li>
 <li>通过<code>js解释器</code>将<code>js</code>解析成<code>AST</code>。</li>
 <li>遍历<code>AST</code>，查找资源依赖，用<code>addDependency</code>函数将依赖对象添加到<code>module</code>的依赖列表中。</li>
 <li><code>AST</code>遍历结束后，通过<code>module.handleParseResult</code>处理模块依赖。</li>
 <li>对<code>module</code>新增的依赖，递归此过程。直到依赖解析完毕。</li>
+<li>执行<code>finishMake</code>钩子函数，开始分<code>chunk</code>，调用<code>compilation.seal</code>函数。</li>
 </ol>
+<h3 id="拓展知识-1"><a href="#拓展知识-1" class="headerlink" title="拓展知识"></a>拓展知识</h3><h4 id="Loader"><a href="#Loader" class="headerlink" title="Loader"></a>Loader</h4><p><img src="/2022/01/29/webpack/Loader-Pitch.png" srcset="/img/loading.gif"></p>
+<div class="code-wrapper"><pre><code class="hljs js">[<span class="hljs-string">&#x27;style-loader&#x27;</span>,<span class="hljs-string">&#x27;css-loader&#x27;</span>,<span class="hljs-string">&#x27;less-loader&#x27;</span>]</code></pre></div>
+
+<p>pitch的阶段就是从style =&gt; less，然后读取字符串，再从 less =&gt; style。</p>
+<p>一般的loader都是从后向前解析，比如说这里我们将less转换成css语法，再将css语法转换成js模块，最后用style-loader转换成style的标签的形式挂载到html中。</p>
+<p>但是style拿到一串字符串它怎么把它编译成浏览器看得懂的模块呢，按正常的流程它转换不过来，所以这里就要在pitch的阶段中实现，pitch中如果有返回值它会直接返回前一个的loader中，并且后面再执行会跳过这个loader，比如style.loader在picth阶段返回了，就会阻断后面的流程，pitch的时候在它的参数中，style可以拿到css的文件名，返回require(‘…/xxx.less’);</p>
 <h2 id="三、生成阶段"><a href="#三、生成阶段" class="headerlink" title="三、生成阶段"></a>三、生成阶段</h2><ol>
 <li>创建<code>chunkGraph</code>对象。</li>
 <li>遍历<code>compilation.module</code>集合，将<code>module</code>按<code>entry/动态引入</code>划分chunk。</li>
-<li>划分完成后，调用createModuleAssets和createChunkAssets遍历module和<code>chunk</code>，调用<code>compilation.emitAssets</code>方法将<code>assets</code>信息记录到<code>compilation.assets</code>对象中。</li>
+<li>划分完成后，调用<code>createModuleAssets</code>和<code>createChunkAssets</code>遍历<code>module</code>和<code>chunk</code>，调用<code>compilation.emitAssets</code>方法将<code>assets</code>信息记录到<code>compilation.assets</code>对象中。</li>
 <li>触发seal回调函数，控制流回到<code>compiler</code>对象。</li>
 </ol>
+<h3 id="拓展知识-2"><a href="#拓展知识-2" class="headerlink" title="拓展知识"></a>拓展知识</h3><h4 id="chunk分包"><a href="#chunk分包" class="headerlink" title="chunk分包"></a>chunk分包</h4><p>在划分<code>chunk</code>的过程中，可能会有多个入口就会有多个<code>chunk</code>，在不同的<code>chunk</code>中可能会出现依赖与相同的文件，这样就会导致每个<code>chunk</code>中都会有相同的文件代码，这就是浪费了空间，所以有一些插件可以优化<code>chunks</code>结构。</p>
+<p>默认分包规则就是按照入口文件的依赖打包一个chunk、异步加载的文件为一个chunk。</p>
+<p>对于不同入口的chunk之间没有关联。但是一个以入口文件打包的chunk和异步的chunk可以存在单向依赖关系，分别存在<code>ChunkGraph._children</code>和<code>ChunkGraph._parents</code>中。</p>
+<h4 id="runtime代码"><a href="#runtime代码" class="headerlink" title="runtime代码"></a>runtime代码</h4><p>运行时代码就是支撑各项特性运行的时候的代码。</p>
+<p>最后打包就是遍历chunk中的module，对module进行转移输出类似于eval()这种模块级别的产物。</p>
+<p>然后根据chunk的类型，选择不同的结构框架，按次序组装模块产物，打包最终的bundle。</p>
 
             </div>
             <hr>
@@ -265,6 +374,12 @@
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2022/02/01/Vue1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">《深入浅出VueJS》总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

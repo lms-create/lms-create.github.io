@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/null">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="保持热爱，奔赴山海">
+  
+  <meta name="author" content="李名顺">
+  <meta name="keywords" content="">
+  
+  <title>浏览器相关知识 - zust-lms</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>李名顺</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/88369330_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="浏览器相关知识">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-04 10:49" pubdate>
+        2022年2月4日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">浏览器相关知识</h1>
+            
+            <div class="markdown-body">
+              <h2 id="浏览器中的进程"><a href="#浏览器中的进程" class="headerlink" title="浏览器中的进程"></a>浏览器中的进程</h2><p><strong>1. Browser Process</strong></p>
+<p>负责包括地址栏，书签栏，前进后退按钮等部分的工作；</p>
+<p>负责处理浏览器的一些不可见的底层操作，比如网络请求和文件访问；</p>
+<p><strong>2. Renderer Process</strong></p>
+<p>负责一个 tab 内关于网页呈现的所有事情</p>
+<p><strong>3. Plugin Process</strong></p>
+<p>负责控制一个网页用到的所有插件，如 flash</p>
+<p><strong>4. GPU Process</strong></p>
+<p>负责处理 GPU 相关的任务</p>
+<h2 id="浏览器一个Tab中的线程"><a href="#浏览器一个Tab中的线程" class="headerlink" title="浏览器一个Tab中的线程"></a>浏览器一个Tab中的线程</h2><p><strong>1.GUI渲染线程</strong></p>
+<ul>
+<li>负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。</li>
+<li>当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行</li>
+<li>注意，<strong>GUI渲染线程与JS引擎线程是互斥的</strong>，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中<strong>等到JS引擎空闲时</strong>立即被执行。</li>
+</ul>
+<p><strong>2. JS引擎线程</strong></p>
+<ul>
+<li>也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）</li>
+<li>JS引擎线程负责解析Javascript脚本，运行代码。</li>
+<li>JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序</li>
+<li>同样注意，<strong>GUI渲染线程与JS引擎线程是互斥的</strong>，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。</li>
+</ul>
+<p><strong>3. 事件触发线程</strong></p>
+<ul>
+<li>归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）</li>
+<li>当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中</li>
+<li>当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理</li>
+<li>注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）</li>
+</ul>
+<p><strong>4. 定时触发器线程</strong></p>
+<ul>
+<li>传说中的<code>setInterval</code>与<code>setTimeout</code>所在线程</li>
+<li>浏览器定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）</li>
+<li>因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）</li>
+<li>注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。</li>
+</ul>
+<p><strong>5. 异步http请求线程</strong></p>
+<ul>
+<li>在XMLHttpRequest在连接后是通过浏览器新开一个线程请求</li>
+<li>将检测到状态变更时，如果设置有回调函数，异步线程就<strong>产生状态变更事件</strong>，将这个回调再放入事件队列中。再由JavaScript引擎执行。</li>
+</ul>
+<p><strong>iframe 的渲染 – Site Isolation</strong></p>
+<p>在一个tab界面中打开的iframe可以是一个单独的进程。</p>
+<h2 id="浏览器的渲染原理"><a href="#浏览器的渲染原理" class="headerlink" title="浏览器的渲染原理"></a>浏览器的渲染原理</h2><p>浏览器在拿到资源后的解析渲染。</p>
+<ol>
+<li>解析HTML生成DOM树。</li>
+<li>解析CSS生成CSSOM树。</li>
+<li>通过DOM树和CSSOM树生成render树。</li>
+<li>布局。</li>
+<li>绘制。</li>
+</ol>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p>通过遍历 DOM树 及相关元素的计算样式，主线程会构建出包含每个元素的坐标信息及盒子大小的布局树。</p>
+<h3 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h3><p><strong>创建绘制顺序记录</strong></p>
+<p>即使知道了不同元素的位置及样式信息，我们还需要知道不同元素的绘制先后顺序才能正确绘制出整个页面。在绘制阶段，主线程会遍历布局树以创建绘制记录。绘制记录可以看做是记录各元素绘制先后顺序的笔记。</p>
+<p><strong>创建层树</strong></p>
+<p>遍历布局树，对所有布局进行层的划分，对will-change的属性设置为单独的层。</p>
+<p><strong>合成帧</strong></p>
+<p>GUI渲染线程会通知合成器线程去合成帧，有些层的画面会占据整个屏幕的大小，所以合成线程中会将这个层分成一块块的小块，放入栅格化线程进行栅格化，然后将这些放入GPU显存中，合成线程会收集这些小块以创建合成帧。然后将这些帧在GPU中以显示到屏幕上。</p>
+<p><code>RenderObject</code>：</p>
+<p>保存绘制DOM节点所需要的各种信息。</p>
+<p><code>RenderLayer</code>：</p>
+<p>层树。</p>
+<p><code>GraphicsLayer</code>：</p>
+<p>层在GPU中的内存空间。为了节省 GPU 的内存资源，Webkit 并不会为每个 <code>RenderLayer</code> 分配一个对应的后端存储。而是按照一定的规则，将一些 <code>RenderLayer</code> 组合在一起，形成一个有后端存储的新层，用于之后的合成，称之为合成层。合成层中，存储空间使用 <code>GraphicsLayer</code> 表示。对于一个 <code>RenderLayer</code> 对象，<strong>如果没有单独提升为合成层，则使用其父对象的合成层</strong>。就是将一些层统一的合成到一层中，共用一块显存。</p>
+<h2 id="浏览器的存储方案"><a href="#浏览器的存储方案" class="headerlink" title="浏览器的存储方案"></a>浏览器的存储方案</h2><h3 id="storage"><a href="#storage" class="headerlink" title="storage"></a>storage</h3><p>localstorage是存储在本地的信息。可以在之中存时间，以用来在下次获取的时候，判断时间是否过期。</p>
+<p>seesionstroage一次会话后清除。</p>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>cookie储存在本地。服务会发送set-cookie字段给客户端设置一个cookie。</p>
+<p>set-cookie可以写入HttpOnly字段禁止js代码获取cookie，也可以写符secure字段禁止除https以外的协议使用此cookie。写入sameSite = Strict字段可以禁止跨站发送cookie。</p>
+<h2 id="跨域方案"><a href="#跨域方案" class="headerlink" title="跨域方案"></a>跨域方案</h2><p>同源指域名、端口、协议都相同。</p>
+<h3 id="CORS跨域资源共享"><a href="#CORS跨域资源共享" class="headerlink" title="CORS跨域资源共享"></a>CORS跨域资源共享</h3><p>cors会将请求分为 简单请求 和 特殊请求。</p>
+<p><strong>简单请求：</strong></p>
+<p>同时满足以下条件的可以被称为简单请求。</p>
+<ol>
+<li>方法是HEAD、GET、POST中的一种。</li>
+<li>请求首部中不能有以下字段以外的字段：accept、accept-language、content-language、content-type（只限于三个值<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>、<code>text/plain</code>），last-event-ID。</li>
+</ol>
+<p>当浏览器发现是简单请求时，就会在首部添加origin字段，值为当前url。</p>
+<p>如果服务端允许跨域，则在响应中携带以下字段：</p>
+<p><code>access-control-allow-origin</code>：url</p>
+<p><code>access-control-allow-Credentials</code>：false</p>
+<p>如果跨域想操作cookie则需要满足以下3点：</p>
+<ol>
+<li>Access-control-allow-Credentials的值为true。</li>
+<li>access-control-allow-origin的值不能是通配符，必须要是制定url。</li>
+<li>ajax中要设置withCredentials为true。</li>
+</ol>
+<p><strong>特殊请求：</strong></p>
+<p>当为特殊请求时，浏览器会发起一次预检请求 OPTIONS。</p>
+<p>请求中会携带这次请求的方法询问是否可以发起，询问会额外携带的头信息。</p>
+<p>Access-allow-request-method：PUT</p>
+<p>Access-allow-request-headers: xxxx</p>
+<p>如果服务端许可则携带以下除了之前两个响应头部之外的这些信息返回：</p>
+<p>Access-Control-Allow-Methods：允许访问的方式</p>
+<p>Access-Control-Allow-Headers：允许携带的头</p>
+<p>Access-Control-Max-Age：本次许可的有效时长，单位是秒，<strong>过期之前的ajax请求就无需再次进行预检了</strong></p>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>利用script标签没有跨域的性质。</p>
+<h3 id="Nginx反向代理"><a href="#Nginx反向代理" class="headerlink" title="Nginx反向代理"></a>Nginx反向代理</h3><p>通过代理服务器转发请求</p>
+<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3><p>没有跨域限制。</p>
+<h3 id="PostMessage"><a href="#PostMessage" class="headerlink" title="PostMessage"></a>PostMessage</h3><h3 id="webpack跨域配置"><a href="#webpack跨域配置" class="headerlink" title="webpack跨域配置"></a>webpack跨域配置</h3><h2 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h2><p><strong>memory cache:</strong> </p>
+<p>它是将资源文件缓存到内存中。等下次请求访问的时候不需要重新下载资源，而是直接从内存中读取数据。</p>
+<p><strong>disk cache:</strong> </p>
+<p>它是将资源文件缓存到硬盘中。等下次请求的时候它是直接从硬盘中读取。</p>
+<p><strong>memory cache(内存缓存)</strong></p>
+<p>退出进程时数据会被清除，而**disk cache(硬盘缓存)**退出进程时数据不会被清除。内存读取比硬盘中读取的速度更快。但是我们也不能把所有数据放在内存中缓存的，因为内存也是有限的。</p>
+<p><strong>memory cache(内存缓存)</strong></p>
+<p>一般会将<strong>脚本、字体</strong>会存储到内存缓存中。</p>
+<p><strong>disk cache(硬盘缓存)</strong></p>
+<p> 一般非脚本会存放在硬盘中，比如<strong>图片</strong>这些。</p>
+<p><strong>缓存读取的原理：</strong></p>
+<p>先从内存中查找对应的缓存，如果内存中能找到就读取对应的缓存，否则的话就从硬盘中查找对应的缓存，如果有就读取，否则的话，就重新网络请求。</p>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><p>首次请求，服务器返回<strong>Last-Modified</strong>：最后修改时间。下次请求时浏览器携带<strong>if-modify-since</strong>：为上一次的最后修改时间。服务器和当前资源的时间对比，如果没有改变则返回304，继续使用缓存的文件。如果发生变化则返回资源并返回最新的<strong>Last-Modified</strong>。</p>
+<p><strong>Etag/if-none-match</strong>是一个逻辑，只是它以文件是否改变作为标识。</p>
+<h3 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h3><p><strong>Expries 1.0</strong></p>
+<h5 id="Cache-control-1-1"><a href="#Cache-control-1-1" class="headerlink" title="Cache-control 1.1"></a>Cache-control 1.1</h5><p>Public指示响应可被任何缓存区缓存。</p>
+<p>Private指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当用户的部分响应消息，此响应消息对于其他用户的请求无效。</p>
+<p>no-cache指示请求或响应消息不能缓存</p>
+<p>no-store用于防止重要的信息被无意的发布。在请求消息中发送将使得请求和响应消息都不使用缓存。</p>
+<p>max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。</p>
+<p>min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应。</p>
+<p>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/">浏览器</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/03/vuex/">
+                        <span class="hidden-mobile">vuex</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <span>lms</span> <span> && </span> <span>xrx</span> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,497 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/null">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  
+    <meta name="description" content="保持热爱，奔赴山海">
+  
+  <meta name="author" content="李名顺">
+  <meta name="keywords" content="">
+  
+  <title>《深入浅出VueJS》总结 - zust-lms</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>李名顺</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/88369330_p0.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="《深入浅出VueJS》总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-02-01 17:53" pubdate>
+        2022年2月1日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      27
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">《深入浅出VueJS》总结</h1>
+            
+            <div class="markdown-body">
+              <h2 id="知识脉络"><a href="#知识脉络" class="headerlink" title="知识脉络"></a>知识脉络</h2><ol>
+<li>object的双向绑定原理</li>
+<li>array的双向绑定原理</li>
+<li>双向绑定相关的API原理</li>
+<li>虚拟DOM</li>
+<li>模版编译原理</li>
+<li>生命周期相关API原理</li>
+<li>vue初始化流程相关源码解析</li>
+</ol>
+<h2 id="Object变化侦测"><a href="#Object变化侦测" class="headerlink" title="Object变化侦测"></a>Object变化侦测</h2><p>vue2的双向绑定原理是基于<code>Object.defineProperty()</code>实现的。</p>
+<p><code>denfineProperty</code>的属性描述符对象中get函数在获取target.val的值是被调用，set函数在修改target.val时被调用。</p>
+<p>当你的值被某个地方被使用时，就会触发get，所以get就可以收集到有哪些地方使用了它。</p>
+<p>所以vue<strong>在get中收集依赖，在set中触发依赖。</strong></p>
+<p>依赖收集在Dep类中。而这个依赖就是watcher。</p>
+<p>当数据被读取时，收集的就是这个watcher类。当数据改变时，遍历这个数据所订阅的watcher通知他们做出应答。</p>
+<p><strong>创建实例时会调用实例的constructor函数。</strong></p>
+<p>为什么会收集watcher，首先在vue中每一个组件对应着一个的watcher实例。在vue的生命周期中，模版经过编译生成渲染函数，然后在beforeMount Hook后，Mount Hook前，创建watcher实例对应这个组件，而watcher的第二的参数是支持函数的，函数中是这么执行的<code>vm._update(vm._render())</code>，这个语句的意思就是通过渲染函数获取最新的虚拟dom后，经过patch对比挂载变化的DOM，而这其中，通过渲染函数生成虚拟dom就要获取组件中用到的数据，当这个watcher中获取数据触发他们的get后，在组件中所有用到的数据都会订阅这个watcher了，在数据发生变化时，及时通知组件进行新一轮的渲染阶段，这里新一轮的数据变化挂载DOM是异步的。</p>
+<p>vue2的双向绑定原理有点缺陷，比如我this.obj.name = “lms”就监听不到的，同理 delete this.obj.name 也是监听不到的。</p>
+<h2 id="Array变化侦测"><a href="#Array变化侦测" class="headerlink" title="Array变化侦测"></a>Array变化侦测</h2><p>object和array的变化侦测肯定是不一样的，数组通过push、pop等方法是可以改变数组的。</p>
+<p>所以在Array中<strong>在get中收集依赖，在拦截器中触发依赖。</strong></p>
+<p>在数组中一共有7的API是可以改变数组的，分别是push、pop、shift、unshift、splice、sort、reverse。</p>
+<p>拦截器就是通过我们在prototype对这7个api进行劫持，修改他们的原生行为，在调用这些api时去通知watcher作出响应。</p>
+<p>所以因为收集依赖和触发依赖是在不同的地方，我们要将Dep依赖数组放在Oberver中，这样2个地方都能访问的到了。</p>
+<p>oberver是将所有的子数据也递归转换成响应式数据的类。</p>
+<p>所以在defineReactive中我们去将一个数据转变成响应式数据，必然需要使用observer实例，所以可以在get中访问到Dep来收集依赖。</p>
+<p>在defineReactive中构建observer实例时，会将数组传入进去，然后在observer中向数组上添加一个<code>__ob__</code>属性，保存this，也就是observer自身。所以在array.prototype的拦截器中也可以访问到dep数组去触发依赖了。这里的<code>__ob__</code>挺重要的，很多地方的判断都是和它有关。比如在创建observer实例是，首先得判断一下当前值是否有<code>__ob__</code>属性有的话就直接用了，就避免了重复创建浪费性能。</p>
+<p>关于array中，vue的响应式原理还是有它的缺陷。无法侦测到通过数组下标去修改值，也无法通过length = 0的方法来清空数组。</p>
+<h2 id="双向绑定相关的API原理"><a href="#双向绑定相关的API原理" class="headerlink" title="双向绑定相关的API原理"></a>双向绑定相关的API原理</h2><h3 id="vm-watch-expOrFn-callback"><a href="#vm-watch-expOrFn-callback" class="headerlink" title="vm.$watch(expOrFn,callback)"></a>vm.$watch(expOrFn,callback)</h3><p>watch的实现就是利用watcher实例，监听了a.b.c，当值发生改变时调用回调函数。watch中有两个可选项：<code>immediate</code>，<code>deep</code>。且watch会返回一个取消观察函数。</p>
+<p><code>immediate</code>：就是要求立马以当前值触发回调。</p>
+<p><code>deep</code>：就是对当前对象的内部值也进行一个监听。监听数组的变动不需要这么做。</p>
+<p>unwatch函数：就是现在不需要观察这个数据了，所以我们需要让所有订阅了这个watcher的dep数组中去掉自己。所以我们需要在watcher类中记录自身被那些dep所订阅。所以在watcher中需要创建deps数组记录watcher订阅的dep，记录dep的id，防止重复记录。最后在dep在订阅watcher的时候，也将自己放入watcher的订阅数组中。</p>
+<h3 id="vm-set-target-key-val"><a href="#vm-set-target-key-val" class="headerlink" title="vm.$set(target, key, val)"></a>vm.$set(target, key, val)</h3><p>这个API用在不能被侦测到的数据上。</p>
+<p>set内部对数组就会使用已经被监听的拦截器上的<code>splice</code>API进行修改。</p>
+<p>如果是新增加的元素就通过defineReactive来监听，然后通过<code>ob.dep.notify()</code>手动发送变更信息。</p>
+<h3 id="vm-delete-target-key"><a href="#vm-delete-target-key" class="headerlink" title="vm.$delete(target, key)"></a>vm.$delete(target, key)</h3><p>内部原理就是就是删除之后，<code>ob.dep.notify()</code>手动发送一下通知。还有加上一些特判。</p>
+<h2 id="虚拟DOM"><a href="#虚拟DOM" class="headerlink" title="虚拟DOM"></a>虚拟DOM</h2><p>操作DOM是非常昂贵的，如果我们状态一旦发生改变我们就全部重新生成一份DOM，是会造成非常大的性能消耗的。</p>
+<p>在vue2中引入了虚拟DOM，虚拟DOM在vue2中的使用是结合变化侦测一起使用的，一个组件对应一个watcher，当组件中的状态发生改变时，通知组件watcher进行虚拟DOM比对渲染。</p>
+<p>vue中的diff算法只进行同层级的比较。且有4种对比方案，对比完之后，再循环对比。</p>
+<h2 id="模板编译原理"><a href="#模板编译原理" class="headerlink" title="模板编译原理"></a>模板编译原理</h2><p>模板编译成渲染函数，再由渲染函数生成虚拟DOM进行diff算法比对渲染。</p>
+<p>模板编译成渲染函数有三部分组成。</p>
+<ol>
+<li>将模板编译成AST。（解析器）</li>
+<li>标记其中的静态节点。（优化器）</li>
+<li>用AST生成渲染函数。（生成器）</li>
+</ol>
+<p>解析器又有HTML解析器、文本解析器、过滤器解析器。</p>
+<p>在<strong>解析器</strong>中，有四个钩子函数，start、end、comment、chars。</p>
+<p><strong>用栈维护dom层级关系。</strong></p>
+<p>start：解析到标签开头时触发，第三个参数标记自闭合标签。</p>
+<p>end：解析到标签结尾时触发。</p>
+<p>chars：解析道文本时触发。</p>
+<p>comment：解析到注释时触发。</p>
+<p>在<strong>优化器</strong>中，需要标记静态节点。因为：</p>
+<ol>
+<li>在除第一次生成虚拟dom之外，都不需要重新生成静态节点了，直接复制过来就好了。</li>
+<li>在diff算法的过程中，直接跳过静态节点。因为静态节点肯定不会发生动态的状态改变，因为在运行时，vue都没有编译器这个功能，渲染函数都是直接初始化时就编译好给我们了的，后面状态的变更实际只和渲染函数中有变量的部分有关系，静态节点不会发生改变。</li>
+</ol>
+<p>先标记完静态节点后，再标记静态根节点。因为标记完所有的静态节点后，我直接从上到下找到的第一个静态节点就是静态根节点。</p>
+<h1 id="生命周期相关API原理"><a href="#生命周期相关API原理" class="headerlink" title="生命周期相关API原理"></a>生命周期相关API原理</h1><h3 id="vue原型上的实例方法"><a href="#vue原型上的实例方法" class="headerlink" title="vue原型上的实例方法"></a>vue原型上的实例方法</h3><p>下面这些都是在vue初始化中，在vue原型上挂载的方法。</p>
+<ol>
+<li>数据相关的实例方法，$watch、$delete、$set。</li>
+<li>事件相关的实例方法，$on、$emit、$once、$off。</li>
+<li>生命周期相关的实例方法，$forceUpdate、$destroy、$mount、$nextTick。</li>
+</ol>
+<p><code>vm.$forceUpdate()</code>：</p>
+<p>让组件重新渲染，仅对当前组件以及插槽里的子组件。</p>
+<p><code>vm.$destroy()</code>：</p>
+<p>销毁实例，切断和父组件的联系，在订阅了该组件的dep中删除自己。删除所有事件监听器。</p>
+<p><code>vm.$nextTick()</code>：</p>
+<p>将传入的函数放到微任务队列中执行，在项目中有时候修改了状态，需要拿到修改后的dom节点进行操作，但是同步执行是做不到的，所以我们需要nextTick将操作放到微任务队列之中。</p>
+<p>nextTick会收集同步事件执行时的所有回调函数，在同步执行结束时，统一执行在微任务队列中的操作。有时候微任务的优先级比较高，nextTick可以强制进入宏任务队列之中。</p>
+<p><code>vm.$mount</code>：</p>
+<p>传入el，或者在模版对象中使用template挂载DOM节点。</p>
+<p>mount在运行时版本和完整版是不一样的。</p>
+<p>运行时版本只有mount的核心功能。也就是只有通过渲染函数生成虚拟DOM比对渲染的过程。</p>
+<p>完整版里有完整的<code>模板 =&gt; 渲染函数 =&gt; 虚拟DOM =&gt; 真实DOM</code>的过程。</p>
+<div class="code-wrapper"><pre><code class="hljs js">callHook(vm, <span class="hljs-string">&#x27;beforeMount&#x27;</span>);
+<span class="hljs-keyword">new</span> Watcher(vm,<span class="hljs-function">()=&gt;</span> &#123;
+  vm._update(vm._render()); <span class="hljs-comment">//渲染函数 =&gt; 虚拟DOM =&gt; 真实DOM</span>
+&#125;,noop);
+callHook(vm, <span class="hljs-string">&#x27;Mounted&#x27;</span>);</code></pre></div>
+
+<h3 id="vue中的全局API"><a href="#vue中的全局API" class="headerlink" title="vue中的全局API"></a>vue中的全局API</h3><p><code>Vue.extend</code>：</p>
+<p>创建一个vue实例的子类，传入一个对象参数。</p>
+<p>可以通过new 创建一个实例然后通过mount挂在在dom上。</p>
+<div class="code-wrapper"><pre><code class="hljs js"><span class="hljs-keyword">new</span> child().$mount(<span class="hljs-string">&#x27;#childApp&#x27;</span>);</code></pre></div>
+
+<p>继承父类的options和其他各种方法、属性。</p>
+<p><code>Vue.mixin</code>：</p>
+<p>混入一个全局的监听器，会给之后创建的所有vue实例都混入自己的生命周期函数。</p>
+<p><code>Vue.use</code>：</p>
+<p>使用插件。会调用对象中的install函数。如果插件本身是函数就调用这个函数。</p>
+<h2 id="vue初始化流程相关源码解析"><a href="#vue初始化流程相关源码解析" class="headerlink" title="vue初始化流程相关源码解析"></a>vue初始化流程相关源码解析</h2><p>vue的生命周期的流程：</p>
+<p>初始化vue实例上的属性。</p>
+<p>初始化事件。</p>
+<p><code>callHook(vm,&#39;beforeCreate&#39;)</code></p>
+<p>初始化inject。</p>
+<p>初始化state。（props、methods、data、computed、watch）</p>
+<p>初始化provide。</p>
+<p><code>callHook(vm,&#39;created&#39;)</code></p>
+<p>模版编译=&gt;渲染函数。</p>
+<p><code>callHook(vm,&#39;beforeMount&#39;)</code></p>
+<p>渲染函数 =&gt; 虚拟DOM =&gt; 比对渲染 =&gt; 真实DOM</p>
+<p><code>callHook(vm,&#39;mounted&#39;)</code></p>
+<p><code>callHook(vm,&#39;beforeDestroy&#39;)</code></p>
+<p><code>callHook(vm,&#39;destroyed&#39;)</code></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%9F%A5%E8%AF%86%E6%A2%B3%E7%90%86/">知识梳理</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/02/vue-router/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">vue-router</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/29/webpack/">
+                        <span class="hidden-mobile">webpack基本原理</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <span>lms</span> <span> && </span> <span>xrx</span> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
